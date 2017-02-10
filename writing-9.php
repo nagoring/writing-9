@@ -13,37 +13,88 @@
  */
 include_once __DIR__ . '/lib/writing9_common.php';
 
-if ( is_admin() ) {
-    
+if ( is_admin()) {
 	//メニューの作成
 	add_action('admin_menu', 'writing9_add_pages');
 	function writing9_add_pages() {
 		// トップレベルメニュー追加 ( メニューの一番下に追加される )
 		add_menu_page('Writing-9', 'Writing-9', 8, 'writing9_manager', 'func_writing9_admin_page');
+		add_submenu_page('writing9_manager', 'Writing-9一覧', '一覧', 8, 'sub_writing9_lisb', 'func_writing9_list');
 	}
+	function func_writing9_list(){
+		$error = \Any\Core\Error::getInstance();
+		$view = \Any\Core\View::getInstance();
+		$form = \Any\Definition\Form::getInstance();
+		$response = \Any\Core\Response::getInstance();
+		$ordersDb = \Any\Db\Orders::getInstance();
+		
+		
+	    $view->render('views/v_func_writing9_list.php', [
+			'form' => $form,
+			'error' => $error,
+			'response' => $response,
+		]);
+	}
+
 	function order(){
-	    if(!validate_ordering()){
-	        return false;
-	    }
+	    return true;
 	}
 	function validate_ordering(){
-	    if(!isset($_POST['text_type']) || $_POST['text_type'] === ''){
-	        
+		$error = \Any\Core\Error::getInstance();
+	    if(!isset($_POST['text_type']) || empty($_POST['text_type'])){
+			$error->add("文章タイプを入力してください");
 	    }
-	    if(!isset($_POST['number_articles']) || $_POST['number_articles'] === ''){
-	        
+	    if(!isset($_POST['number_articles']) || empty($_POST['number_articles'])){
+	    	$error->add("希望記事数を入力してください");
 	    }
-	    
-	    
-	    
+	    if(!isset($_POST['main_word']) || empty($_POST['main_word'])){
+	    	$error->add("メインワードを入力してください");
+	    }
+	    return $error->isNotError();
 	}
 	function func_writing9_admin_page() {
-	    $view = \Any\Core\View::getInstance();
-	    if(isset($_POST['submit']) && $_POST['submit']){
-	        any_safe($_POST, 'text_type');
-	        order();
+		$error = \Any\Core\Error::getInstance();
+		$view = \Any\Core\View::getInstance();
+		$form = \Any\Definition\Form::getInstance();
+		$response = \Any\Core\Response::getInstance();
+		
+	    if(isset($_POST['submit']) && strlen($_POST['submit']) > 0){
+			$response = \Any\Core\Response::getInstance();
+			$response->set('text_type', any_safe($_POST, 'text_type', ''));
+			$response->set('end_of_sentence', any_safe($_POST, 'end_of_sentence', ''));
+			$response->set('purpose_ariticle', any_safe($_POST, 'purpose_ariticle', ''));
+			$response->set('text_taste', any_safe($_POST, 'text_taste', ''));
+			$response->set('note', any_safe($_POST, 'note', ''));
+			$response->set('number_articles', any_safe($_POST, 'number_articles', ''));
+			$response->set('word_count', any_safe($_POST, 'word_count', ''));
+			$response->set('title_creation', any_safe($_POST, 'title_creation', ''));
+			$response->set('visual_check', any_safe($_POST, 'visual_check', ''));
+			$response->set('format_setting', any_safe($_POST, 'format_setting', ''));
+			$response->set('format_setting_note', any_safe($_POST, 'format_setting_note', ''));
+			$response->set('use_pro_writer', any_safe($_POST, 'use_pro_writer', ''));
+			$response->set('genre', any_safe($_POST, 'genre', ''));
+			$response->set('title', any_safe($_POST, 'title', ''));
+			$response->set('main_word', any_safe($_POST, 'main_word', ''));
+			$response->set('keyword1', any_safe($_POST, 'keyword1', ''));
+			$response->set('keyword2', any_safe($_POST, 'keyword2', ''));
+			$response->set('keyword3', any_safe($_POST, 'keyword3', ''));
+			$response->set('keyword4', any_safe($_POST, 'keyword4', ''));
+			$response->set('keyword5', any_safe($_POST, 'keyword5', ''));
+			$response->set('ng_keyword1', any_safe($_POST, 'ng_keyword1', ''));
+			$response->set('ng_keyword2', any_safe($_POST, 'ng_keyword2', ''));
+			$response->set('reference_url', any_safe($_POST, 'reference_url', ''));
+		    if(validate_ordering()){
+				$ordersDb = \Any\Db\Orders::getInstance();
+				$ordersDb->saveResponse($response);
+		    }else{
+				$error = \Any\Core\Error::getInstance();
+		    }
 	    }
-	    $view->render('views/v_writing9_index.php');
+	    $view->render('views/v_writing9_index.php', [
+			'form' => $form,
+			'error' => $error,
+			'response' => $response,
+		]);
 // 		$slideShowModel = NSlideShowModel::getInstance();
 // 		if(isset($_POST['delete_submit']) && $_POST['delete_submit']){
 // 			$index = $_POST['delete_submit'];
