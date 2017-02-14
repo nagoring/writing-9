@@ -14,6 +14,20 @@
 include_once __DIR__ . '/lib/writing9_common.php';
 
 if ( is_admin()) {
+	// function load_script() {
+	// 	echo "aaaaaaaaa";
+	// 	exit;
+	// 	wp_enqueue_script('jquery');
+	// 	wp_enqueue_script('javascript', get_template_directory_uri().'/js/javascript.js',array('jquery'));
+	// }
+ //   add_action( 'wp_enqueue_scripts', 'load_script');
+	
+	//Activateしたときの実行処理
+	register_activation_hook(__FILE__, 'activation_wrting9_plugin');
+	function activation_wrting9_plugin() {
+		\Any\Db\Orders::createTable();
+	}
+	
 	//メニューの作成
 	add_action('admin_menu', 'writing9_add_pages');
 	function writing9_add_pages() {
@@ -25,10 +39,9 @@ if ( is_admin()) {
 		$error = \Any\Core\Error::getInstance();
 		$view = \Any\Core\View::getInstance();
 		$form = \Any\Definition\Form::getInstance();
-		$response = \Any\Core\Response::getInstance();
+		$response = \Any\Core\Response::getInstance(); 
 		$ordersDb = \Any\Db\Orders::getInstance();
-		
-		
+
 	    $view->render('views/v_func_writing9_list.php', [
 			'form' => $form,
 			'error' => $error,

@@ -3,7 +3,7 @@ namespace Any\Db;
 
 class Orders extends Db{
 	protected function __construct() {
-		parent::__construct("orders");
+		parent::__construct("w9_orders");
 	}
     public function getInstance(){
         static $instance = null;
@@ -15,7 +15,7 @@ class Orders extends Db{
 
 	public static function createTable(){
 		global $wpdb;
-		$table = $wpdb->prefix . 'orders';
+		$table = $wpdb->prefix . 'w9_orders';
 		$sql = "
 CREATE TABLE IF NOT EXISTS `{$table}` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -42,6 +42,8 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
   `ng_keyword1` varchar(255) DEFAULT NULL,
   `ng_keyword2` varchar(255) DEFAULT NULL,
   `reference_url` text,
+  `post_date` datetime NOT NULL,
+  `post_date_gmt` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 		

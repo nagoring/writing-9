@@ -122,6 +122,7 @@
 				<div id="major-publishing-actions">
 				
 				<div id="publishing-action">
+					<span id="price_total">合計０円</span>
 				<span class="spinner"></span>
 						<input name="original_publish" type="hidden" id="original_publish" value="更新">
 						<input name="save" type="submit" class="button button-primary button-large" id="publish" value="更新">
@@ -155,7 +156,7 @@
 				<div class="inside">
 				<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">タイトル作成</label></p>
 				<?php echo any_select('title_creation', $form->get('title_creation'), $response->get('title_creation'), [
-				'id' => 'text_taste',
+				'id' => 'title_creation',
 				]);?>
 				
 				<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">フォーマット設定</label></p>
@@ -190,3 +191,85 @@
 	</form>	
 </div><!--#poststuff-->
 </div><!--.wrap-->
+
+<script>
+(function($){
+	'use strict'
+	var app = {};
+	app.price_total = 0;
+	app.number_articles = 0;
+	app.word_count = 0;
+	app.DEFAULT_UNIT_PRICE = 1;
+	app.use_pro_write_unit_price = 0;
+	app.visual_check_unit_price = 0;
+	app.title_creation_unit_price = 0;
+	app.format_setting_unit_price = 0;
+	
+	var $number_articles = $("#number_articles");
+	var $word_count = $("#word_count");
+	var $use_pro_writer = $("#use_pro_writer");
+	var $visual_check = $("#visual_check");
+	var $title_creation = $("#title_creation");
+	var $format_setting = $("#format_setting");
+	
+	
+	$number_articles.on('change', function(){
+		app.number_articles = $(this).val();
+		update_and_calc();
+	});
+	$word_count.on('change', function(){
+		app.word_count = $(this).val();
+		update_and_calc();
+	});
+	$use_pro_writer.on('change', function(){
+		var use_pro_write = $(this).val();
+		if($(this).val() == 1){
+			//プロライターを使用する場合
+			app.use_pro_write_unit_price = 5;
+		}else{
+			app.use_pro_write_unit_price = 0;
+		}
+		update_and_calc();
+	});
+	$visual_check.on('change', function(){
+		if($(this).val() == 1){
+			app.visual_check_unit_price = 0.5;
+		}else{
+			app.visual_check_unit_price = 0;
+		}
+		update_and_calc();
+	});
+	
+	$title_creation.on('change', function(){
+		if($(this).val() == 1){
+			app.title_creation_unit_price = 0.5;
+		}else{
+			app.title_creation_unit_price = 0;
+		}
+		update_and_calc();
+	});
+	
+	$format_setting.on('change', function(){
+		if($(this).val() != 0){
+			app.format_setting_unit_price = 0.5;
+		}else{
+			app.format_setting_unit_price = 0;
+		}
+		update_and_calc();
+	});
+	
+	
+	function update_and_calc(){
+		var unit_price = app.DEFAULT_UNIT_PRICE
+		+ app.visual_check_unit_price
+		+ app.use_pro_write_unit_price
+		+ app.title_creation_unit_price
+		+ app.format_setting_unit_price
+		;
+		app.price_total =  app.number_articles * app.word_count * unit_price;
+		$("#price_total").text('合計 ' + app.price_total + '円');
+	}
+}(jQuery));
+
+	
+</script>
