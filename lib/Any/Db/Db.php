@@ -29,10 +29,12 @@ class Db {
 		$value = '';
 		$values = '';
 		$value_array = array();
-
 		foreach($array as $key => $value){
 			$keys .= $key . ',';
-			if(is_float($value)){
+			if(any_is_date($value)){
+				$values .= '%s,';
+			}
+			else if(is_float($value)){
 				$values .= '%f,';
 			}
 			else if(is_numeric($value)){
@@ -48,8 +50,8 @@ class Db {
                    (' . $keys . ')
             values (' . $values . ')
            ';
-//		echo "sql:$sql<br>" . PHP_EOL;
-//		exit;
+		// echo "sql:$sql<br>" . PHP_EOL;
+		// exit;
 //		return $this->wpdb->query($sql);
 		return $this->wpdb->query( $this->wpdb->prepare($sql, $value_array) );
 	}

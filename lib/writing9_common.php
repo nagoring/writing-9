@@ -51,3 +51,6 @@ function any_create_attribute($attr, $parent_key=''){
 function any_is_hash($var){
     return is_array($var) && array_diff_key($var,array_keys(array_keys($var)));
 }	
+function any_is_date($datetime){
+    return $datetime === date("Y-m-d H:i:s", strtotime($datetime));
+}
