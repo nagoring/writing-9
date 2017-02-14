@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
   `ng_keyword1` varchar(255) DEFAULT NULL,
   `ng_keyword2` varchar(255) DEFAULT NULL,
   `reference_url` text,
+  `total_price` int(10) unsigned NOT NULL,
   `post_date` datetime NOT NULL,
   `post_date_gmt` datetime NOT NULL,
   PRIMARY KEY (`id`)
