@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
   `ng_keyword1` varchar(255) DEFAULT NULL,
   `ng_keyword2` varchar(255) DEFAULT NULL,
   `reference_url` text,
+  `unit_price` float unsigned NOT NULL,
   `total_price` int(10) unsigned NOT NULL,
   `post_date` datetime NOT NULL,
   `post_date_gmt` datetime NOT NULL,
@@ -79,6 +80,23 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
     	$save['post_date'] = date_i18n('Y-m-d H:i:s');
     	$save['post_date_gmt'] = date('Y-m-d H:i:s');
     	
-		$res = $this->insert($save);
+        $unit_price = 1;
+    	if($save['visual_check'] > 0){
+    		$unit_price += 0.5;
+    	}
+    	if($save['use_pro_writer'] > 0){
+    		$unit_price += 5;
+    	}
+    	if($save['title_creation'] > 0){
+    		$unit_price += 0.5;
+    	}
+    	if($save['format_setting'] > 0){
+    		$unit_price += 0.5;
+    	}
+    	
+    	
+		$save['unit_price'] = $unit_price;
+		$save['total_price'] = $save['number_articles'] * $save['word_count'] * $unit_price;
+		return $this->insert($save);
     }
 }
