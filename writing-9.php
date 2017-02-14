@@ -14,6 +14,7 @@
 include_once __DIR__ . '/lib/writing9_common.php';
 
 if ( is_admin()) {
+	
 	//Activateしたときの実行処理
 	register_activation_hook(__FILE__, 'activation_wrting9_plugin');
 	function activation_wrting9_plugin() {
@@ -62,8 +63,7 @@ if ( is_admin()) {
 		$view = \Any\Core\View::getInstance();
 		$form = \Any\Definition\Form::getInstance();
 		$response = \Any\Core\Response::getInstance();
-		
-	    if(isset($_POST['submit']) && strlen($_POST['submit']) > 0){
+	    if(isset($_POST['original_publish']) && strlen($_POST['original_publish']) > 0){
 			$response = \Any\Core\Response::getInstance();
 			$response->set('text_type', any_safe($_POST, 'text_type', ''));
 			$response->set('end_of_sentence', any_safe($_POST, 'end_of_sentence', ''));
