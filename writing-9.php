@@ -14,14 +14,6 @@
 include_once __DIR__ . '/lib/writing9_common.php';
 
 if ( is_admin()) {
-	// function load_script() {
-	// 	echo "aaaaaaaaa";
-	// 	exit;
-	// 	wp_enqueue_script('jquery');
-	// 	wp_enqueue_script('javascript', get_template_directory_uri().'/js/javascript.js',array('jquery'));
-	// }
- //   add_action( 'wp_enqueue_scripts', 'load_script');
-	
 	//Activateしたときの実行処理
 	register_activation_hook(__FILE__, 'activation_wrting9_plugin');
 	function activation_wrting9_plugin() {
@@ -108,26 +100,5 @@ if ( is_admin()) {
 			'error' => $error,
 			'response' => $response,
 		]);
-// 		$slideShowModel = NSlideShowModel::getInstance();
-// 		if(isset($_POST['delete_submit']) && $_POST['delete_submit']){
-// 			$index = $_POST['delete_submit'];
-// 			$slideShowModel->update([
-// 				'comment' => '',
-// 				'url' => '',
-// 			], ['slideshow_id' => $index]);
-// 		}else if(isset($_POST['submit']) && $_POST['submit']){
-// 			for($i=1;$i<=SLIDESHOW_NUMBER_MAX;$i++){
-// 				$comment = $_POST['media_comment' . $i];
-// 				$url = $_POST['media_img' . $i];
-// 				$slideShowModel->update([
-// 					'comment' => $comment,
-// 					'url' => $url,
-// 				], ['slideshow_id' => $i]);
-// 			}
-// 		}
-// 		$slideShowData = $slideShowModel->fetchAll();
-// 		echo SlideShowViewUtil::load(dirname(__FILE__) . '/views/v_slideshow.php', [
-// 			'slideShowData' => $slideShowData
-// 		]);
 	}
 }
