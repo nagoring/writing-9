@@ -1,3 +1,6 @@
+<?php 
+$orderHelper = \Any\Helper\Order::getInstance();
+?>
 <div class="wrap">
 <div id="poststuff">
     <form method="post">
@@ -60,57 +63,46 @@
 	</thead>
 	<tbody>
 	
+	<?php foreach($orders as $order):?>
+	<?php $orderHelper->init($order)?>
 	<tr id="post-1" class="iedit author-self level-0 post-1 type-post status-publish format-standard hentry category-uncategorized">
-			<th scope="row" class="check-column">			<label class="screen-reader-text" for="cb-select-1">Hello world!を選択</label>
+			<th scope="row" class="check-column">
+				<label class="screen-reader-text" for="cb-select-1">Hello world!を選択</label>
 			<input id="cb-select-1" type="checkbox" name="post[]" value="1">
 			<div class="locked-indicator">
 				<span class="locked-indicator-icon" aria-hidden="true"></span>
-				<span class="screen-reader-text">“Hello world!”はロックされています。</span>
+				<span class="screen-reader-text">ロックされています。</span>
 			</div>
-		</th><td class="title column-title has-row-actions column-primary page-title" data-colname="タイトル">
+		</th>
+		
+		<td class="title column-title has-row-actions column-primary page-title" data-colname="タイトル">
 			<div class="locked-info"><span class="locked-avatar"></span>
 			<span class="locked-text"></span></div>
-<strong><a class="row-title" href="https://writing-9-nagoring.c9users.io/wp-admin/post.php?post=1&amp;action=edit" aria-label="「Hello world!」 (編集)">スキンケア,肌質,体験談,コメント</a></strong>
-
-<div class="hidden" id="inline_1">
-	<div class="post_title">Hello world!</div><div class="post_name">hello-world</div>
-	<div class="post_author">1</div>
-	<div class="comment_status">open</div>
-	<div class="ping_status">open</div>
-	<div class="_status">publish</div>
-	<div class="jj">21</div>
-	<div class="mm">01</div>
-	<div class="aa">2017</div>
-	<div class="hh">09</div>
-	<div class="mn">02</div>
-	<div class="ss">03</div>
-	<div class="post_password"></div>
-	<div class="page_template">default</div><div class="post_category" id="category_1">1</div><div class="tags_input" id="post_tag_1"></div>
-	<div class="sticky"></div>
-	<div class="post_format"></div>
-	</div>
+		<strong><a class="row-title" href="#" aria-label="<?php echo $orderHelper->listTitle()?>の詳細"><?php echo $orderHelper->listTitle()?></a></strong>
 	<div class="row-actions">
-		<span class="edit"><a href="https://writing-9-nagoring.c9users.io/wp-admin/post.php?post=1&amp;action=edit" aria-label="“Hello world!” を編集する">編集</a>
-	| </span><span class="trash">
-		<a href="https://writing-9-nagoring.c9users.io/wp-admin/post.php?post=1&amp;action=trash&amp;_wpnonce=c34e8e5d85" class="submitdelete" aria-label="「Hello world!」をゴミ箱に移動">ゴミ箱へ移動</a> | </span>
-		<span class="view"><a href="https://writing-9-nagoring.c9users.io/index.php/2017/01/21/hello-world/" rel="permalink" aria-label="複製">複製</a></span></div>
-		<button type="button" class="toggle-row"><span class="screen-reader-text">詳細を追加表示</span></button></td>
-		<td class="author column-author">20<small>記事</small></td>
-		<td class="categories column-categories">200<small>文字</small></td>
-		<td>入金済み<br><abbr title="2017年01月21日 am 9:02:03">2017年1月21日</abbr></td>
-		<td class="tags column-tags"><label ><progress value="50" max="100"><span>50</span>%</progress><br>記事作成中</td>
-
-		</tr>
+		<span class="edit"><a href="#" aria-label="<?php echo $orderHelper->listTitle()?>の詳細">詳細</a></span>
+	</div>
+		</td>
+		<td class="author column-author"><?php echo $orderHelper->number_articles()?><small>記事</small></td>
+		<td class="categories column-categories"><?php echo $orderHelper->word_count()?><small>文字</small></td>
+		<td>入金済み<br><abbr title="<?php echo $orderHelper->post_date()?>"><?php echo $orderHelper->post_date()?></abbr></td>
+		<td class="tags column-tags"><label ><progress value="50" max="100"><span>50</span>%</progress><br><?php echo $orderHelper->status()?></td>
+	</tr>
+	<?php endforeach?>
+		
+		
+		
+		
+		
 		<tr id="post-1" class="iedit author-self level-0 post-1 type-post status-publish format-standard hentry category-uncategorized">
-			<th scope="row" class="check-column"><label class="screen-reader-text" for="cb-select-1">Hello world!を選択</label>
-			<input id="cb-select-1" type="checkbox" name="post[]" value="1">
-			<div class="locked-indicator">
-				<span class="locked-indicator-icon" aria-hidden="true"></span>
-				<span class="screen-reader-text">“Hello world!”はロックされています。</span>
+		<th scope="row" class="check-column"><label class="screen-reader-text" for="cb-select-1">Hello world!を選択</label>
+		</th>
+		<td class="title column-title has-row-actions column-primary page-title" data-colname="タイトル">
+			<div class="locked-info">
+				<span class="locked-avatar"></span>
+				<span class="locked-text"></span>
 			</div>
-		</th><td class="title column-title has-row-actions column-primary page-title" data-colname="タイトル">
-			<div class="locked-info"><span class="locked-avatar"></span>
-			<span class="locked-text"></span></div>
+			
 <strong><a class="row-title" href="https://writing-9-nagoring.c9users.io/wp-admin/post.php?post=1&amp;action=edit" aria-label="「Hello world!」 (編集)">コスメ,トラブル,ビタミンC,対策方法</a></strong>
 
 <div class="hidden" id="inline_1">
