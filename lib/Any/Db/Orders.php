@@ -99,4 +99,7 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		$save['total_price'] = $save['number_articles'] * $save['word_count'] * $unit_price;
 		return $this->insert($save);
     }
+    public function fetchList($params = []){
+    	return $this->fetches([]);
+    }
 }
