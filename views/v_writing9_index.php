@@ -30,15 +30,8 @@
     
     <h1 class="wp-heading-inline">記事パターン追加</h1>
     <hr class="wp-header-end">
-    
-	<div id="titlediv">
-		<div id="titlewrap">
-		<label class="" id="title-prompt-text" for="title">ここにタイトルを入力</label>
-		<input type="text" id="title" name="title"><?php echo $response->get('title')?></input>
-		</div>
+    <hr >
 	
-		<hr >
-	</div>
 
 	<div class="inside">
 		<div id="edit-slug-box" class="hide-if-no-js"></div>
@@ -55,7 +48,13 @@
 <div id="post-body-content" style="position: relative;"> 
 
 		<div id="postbox-container-2" class="postbox-container ">
-		
+			<div id="titlediv">
+				<div id="titlewrap">
+					<label class="" id="title-prompt-text" for="title">ここに記事パターンのタイトルを入力</label>
+					<input type="text" id="title" name="title"><?php echo $response->get('title')?></input>
+				</div>
+				<div class="inside">　</div>
+			</div>
 			<div id="pageparentdiv" class="postbox ">
 				<button type="button" class="handlediv button-link" aria-expanded="true"><span class="screen-reader-text">パネルを閉じる: 公開</span><span class="toggle-indicator" aria-hidden="true"></span></button>
 				<h2 class="hndle ui-sortable-handle">文章タイプ<small>（説明文、体験談、雑学・お役立ち、紹介文など）</small></h2>
@@ -116,16 +115,18 @@
 				<div class="inside">
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">記事数<span class="w9-require">必須</span></label></p>
 					<input type="number" id="number_articles" name="number_articles" required="required" value="<?php echo $response->get('number_articles')?>"></input>
-					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">文字数</label></p>
+					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">文字数</label><span class="w9-require">必須</span></p>
 					<input type="number" id="word_count" name="word_count" value="<?php echo $response->get('word_count')?>"></input>
 				</div>
 				<div id="major-publishing-actions">
-				
+					<div id="delete-action">
+						<span id="price_total">合計<strong>０</strong>円</span>
+					</div>
 				<div id="publishing-action">
-					<span id="price_total">合計０円</span>
+					
 				<span class="spinner"></span>
-						<input name="original_publish" type="hidden" id="original_publish" value="更新">
-						<input name="save" type="submit" class="button button-primary button-large" id="publish" value="更新">
+						<input name="original_publish" type="hidden" id="original_publish" value="発注">
+						<input name="save" type="submit" class="button button-primary button-large" id="publish" value="発注">
 				</div>
 				<div class="clear"></div>
 				</div>
@@ -136,12 +137,12 @@
 				<h2 class="hndle ui-sortable-handle">品質</h2>
 				<div class="inside">
 					
-					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">目視チェック</label></p>
+					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">目視チェック（@+0.5円）</label></p>
 					<?php echo any_select('visual_check', $form->get('visual_check'), $response->get('visual_check'), [
 						'id' => 'visual_check',
 					]);?>
 					
-					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">プロライターの起用</label></p>
+					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">プロライターの起用（@+5円）</label></p>
 					<?php echo any_select('use_pro_writer', $form->get('use_pro_writer'), $response->get('use_pro_writer'), [
 						'id' => 'use_pro_writer',
 					]);?>
@@ -154,12 +155,12 @@
 				<button type="button" class="handlediv button-link" aria-expanded="true"><span class="screen-reader-text">パネルを閉じる: 公開</span><span class="toggle-indicator" aria-hidden="true"></span></button>
 				<h2 class="hndle ui-sortable-handle">投稿時のフォーマット</h2>
 				<div class="inside">
-				<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">タイトル作成</label></p>
+				<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">タイトル作成（@+0.5円）</label></p>
 				<?php echo any_select('title_creation', $form->get('title_creation'), $response->get('title_creation'), [
 				'id' => 'title_creation',
 				]);?>
 				
-				<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">フォーマット設定</label></p>
+				<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">フォーマット設定（@+0.5円）</label></p>
 				<?php echo any_select('format_setting', $form->get('format_setting'), $response->get('format_setting'), [
 				'id' => 'format_setting',
 				]);?>
@@ -176,12 +177,6 @@
 		</div>
 		
 		
-		<!-- memo：個別にキーワードを指定したい場合は、パターンを追加するしかない？-->
-		<!-- memo：このプラグインのメリットは、大量発注の場合でも楽ちんに出来ることだから現状だとメリットが薄くなるかも-->
-		<!-- memo：キーワードのテーブルをもたせて、「追加」buttonを押すとaddできるようにするなど-->
-		<!-- memo：バージョン2.0で良いか-->
-		
-		<!-- memo：ソースコード整列はどうやってやるのかなあ-->
 
 	</div><!--post-body-content-->
 </div><!--post-body-->

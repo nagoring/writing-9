@@ -14,6 +14,22 @@
 include_once __DIR__ . '/lib/writing9_common.php';
 
 if ( is_admin()) {
+
+	add_action('admin_menu', 'banner_menu');
+	
+	function banner_menu() {
+	  add_options_page('バナー管理', 'バナー管理', 8, 'banner_menu', 'banner_options_page');
+	  $hookname = get_plugin_page_hookname( 'banner_menu', 'banner_options_page');
+	  //var_dump($hookname);
+	  echo "bbbbbbbbbbbbb<br>";
+	  //exit;
+	  //add_action( 'admin_init', 'register_banner_settings' );
+	}
+	
+	function banner_options_page() {
+		echo "aaaaaaaaaa<br>";
+	  // HTML を表示させるコード
+	}	
 	
 	//Activateしたときの実行処理
 	register_activation_hook(__FILE__, 'activation_wrting9_plugin');
@@ -26,7 +42,7 @@ if ( is_admin()) {
 	function writing9_add_pages() {
 		// トップレベルメニュー追加 ( メニューの一番下に追加される )
 		add_menu_page('Writing-9', 'Writing-9', 8, 'writing9_manager', 'func_writing9_admin_page');
-		add_submenu_page('writing9_manager', 'Writing-9一覧', '一覧', 8, 'sub_writing9_lisb', 'func_writing9_list');
+		add_submenu_page('writing9_manager', 'Writing-9一覧', '一覧', 8, 'sub_writing9_list', 'func_writing9_list');
 	}
 	function func_writing9_list(){
 		$error = \Any\Core\Error::getInstance();

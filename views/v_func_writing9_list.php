@@ -184,9 +184,10 @@ $orderHelper = \Any\Helper\Order::getInstance();
 </div>
 <div class="tablenav bottom">
 
-				<div class="alignleft actions bulkactions">
+	<div class="alignleft actions bulkactions">
 			<label for="bulk-action-selector-bottom" class="screen-reader-text">一括操作を選択</label><select name="action2" id="bulk-action-selector-bottom">
-<option value="-1">一括操作</option>
+	<option value="-1">一括操作</option>
+	<option value="payment">一括決済</option>
 	<option value="edit" class="hide-if-no-js">編集</option>
 	<option value="trash">ゴミ箱へ移動</option>
 </select>
