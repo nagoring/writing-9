@@ -29,5 +29,10 @@ class Order extends Helper{
     public function status(){
         return \Any\Definition\EStatus::text($this->order->status);
     }
+    public function submitTag(){
+        $submit_text = \Any\Definition\EStatus::submitText($this->order->status);
+        $html = "<input name=\"save\" type=\"submit\" class=\"button button-primary button-large\" id=\"publish\" value=\"{$submit_text}\">";
+        return $html;
+    }
 }
 
