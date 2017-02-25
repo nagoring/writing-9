@@ -125,8 +125,8 @@
 				<div id="publishing-action">
 					
 				<span class="spinner"></span>
-						<input name="original_publish" type="hidden" id="original_publish" value="発注">
-						<input name="save" type="submit" class="button button-primary button-large" id="publish" value="発注">
+						<input name="original_publish" type="hidden" id="original_publish" value="作成">
+						<input name="save" type="submit" class="button button-primary button-large" id="publish" value="作成">
 				</div>
 				<div class="clear"></div>
 				</div>

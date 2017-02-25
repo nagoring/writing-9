@@ -9,6 +9,7 @@
 
 //$PAYPAL_SITE = "www.paypal.com";	// 本番サイト
 $PAYPAL_SITE = "www.sandbox.paypal.com";	// テストサイト
+// require_once( dirname( __FILE__ ) . '/wp-load.php' );
 
 // read the post from PayPal system and add 'cmd'
 $req = 'cmd=_notify-validate';
@@ -39,6 +40,7 @@ $custom = $_POST['custom'];
 
 if (!$fp) {
 	// HTTP ERROR
+	exit;
 } else {
 	fputs ($fp, $header . $req);
 	$i = 0;
@@ -57,9 +59,10 @@ if (!$fp) {
 			// process payment
 			//D
 		if($_POST['payment_status'] == "Completed"){
-//			$values = TempPayPalReceiptDB::getValues($custom);
+			//ステータス変更
+			
 			$values = TempCreditReceiptDB::getValue($custom);
-			//$payment_method, $family_name, $given_name, $zip, $pref_id, $address, $phone_no, $email, $message
+			
 			$address = new Address(
 				$values["payment_method"], 
 				$values["family_name"],
@@ -85,14 +88,6 @@ if (!$fp) {
 				$values["consumption_point"],
 				$values["member_id"]
 			);
-			$cart = new Cart();
-//			$cart = TempPayPalCartDB::getCartItems($cart, $custom);
-			$cart = TempCreditCartDB::getCartItems($cart, $custom);
-			$cart->count = count($cart->items);
-			if ($cart->count > 0) {
-				ReafLib::orderFormEnd($address, $cart, $template, $values["affiliate_id"]);
-				break;
-			}
 		}
 
 	}
