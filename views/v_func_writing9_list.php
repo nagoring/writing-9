@@ -85,8 +85,14 @@ $orderHelper = \Any\Helper\Order::getInstance();
 		</td>
 		<td class="author column-author"><?php echo $orderHelper->number_articles()?><small>記事</small></td>
 		<td class="categories column-categories"><?php echo $orderHelper->word_count()?><small>文字</small></td>
-		<td>入金済み<br><abbr title="<?php echo $orderHelper->post_date()?>"><?php echo $orderHelper->post_date()?></abbr></td>
-		<td class="tags column-tags"><label ><progress value="50" max="100"><span>50</span>%</progress><br><?php echo $orderHelper->status()?></td>
+		<td><?php echo $orderHelper->status()?><br><abbr title="<?php echo $orderHelper->post_date()?>"><?php echo $orderHelper->post_date()?></abbr></td>
+		<td class="tags column-tags">
+			<!--<label ><progress value="50" max="100"><span>50</span>%</progress><br><?php echo $orderHelper->status()?>-->
+			<form method="post" action="<?php echo get_admin_url() . 'admin.php?page=writing9_order'?>">
+				<input type="hidden" name="order_id" value="<?php echo $orderHelper->id()?>">
+			<?php echo $orderHelper->submitTag()?>
+			</form>
+		</td>
 	</tr>
 	<?php endforeach?>
 		
