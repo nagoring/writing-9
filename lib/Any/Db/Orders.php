@@ -51,55 +51,66 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		
 		";
 		return $wpdb->query($sql);
-	}    
-    public function saveResponse($response){
-    	$save = [];
-    	$save['text_type'] = $response->get('text_type');
-    	$save['end_of_sentence'] = (int)$response->get('end_of_sentence');
-    	$save['purpose_ariticle'] = $response->get('purpose_ariticle');
-    	$save['text_taste'] = (int)$response->get('text_taste');
-    	$save['note'] = $response->get('note');
-    	$save['number_articles'] = (int)$response->get('number_articles');
-    	$save['word_count'] = (int)$response->get('word_count');
-    	$save['title_creation'] = (int)$response->get('title_creation');
-    	$save['visual_check'] = (int)$response->get('visual_check');
-    	$save['format_setting'] = (int)$response->get('format_setting');
-    	$save['format_setting_note'] = $response->get('format_setting_note');
-    	$save['use_pro_writer'] = (int)$response->get('use_pro_writer');
-    	$save['genre'] = (int)$response->get('genre');
-    	$save['title'] = $response->get('title');
-    	$save['main_word'] = $response->get('main_word');
-    	$save['keyword1'] = $response->get('keyword1');
-    	$save['keyword2'] = $response->get('keyword2');
-    	$save['keyword3'] = $response->get('keyword3');
-    	$save['keyword4'] = $response->get('keyword4');
-    	$save['keyword5'] = $response->get('keyword5');
-    	$save['ng_keyword1'] = $response->get('ng_keyword1');
-    	$save['ng_keyword2'] = $response->get('ng_keyword2');
-    	$save['reference_url'] = $response->get('reference_url');
-    	$save['post_date'] = date_i18n('Y-m-d H:i:s');
-    	$save['post_date_gmt'] = date('Y-m-d H:i:s');
-    	
-        $unit_price = 1;
-    	if($save['visual_check'] > 0){
-    		$unit_price += 0.5;
-    	}
-    	if($save['use_pro_writer'] > 0){
-    		$unit_price += 5;
-    	}
-    	if($save['title_creation'] > 0){
-    		$unit_price += 0.5;
-    	}
-    	if($save['format_setting'] > 0){
-    		$unit_price += 0.5;
-    	}
-    	
-    	
+	}
+	public function saveResponse($response){
+		$save = [];
+		$save['text_type'] = $response->get('text_type');
+		$save['end_of_sentence'] = (int)$response->get('end_of_sentence');
+		$save['purpose_ariticle'] = $response->get('purpose_ariticle');
+		$save['text_taste'] = (int)$response->get('text_taste');
+		$save['note'] = $response->get('note');
+		$save['number_articles'] = (int)$response->get('number_articles');
+		$save['word_count'] = (int)$response->get('word_count');
+		$save['title_creation'] = (int)$response->get('title_creation');
+		$save['visual_check'] = (int)$response->get('visual_check');
+		$save['format_setting'] = (int)$response->get('format_setting');
+		$save['format_setting_note'] = $response->get('format_setting_note');
+		$save['use_pro_writer'] = (int)$response->get('use_pro_writer');
+		$save['genre'] = (int)$response->get('genre');
+		$save['title'] = $response->get('title');
+		$save['main_word'] = $response->get('main_word');
+		$save['keyword1'] = $response->get('keyword1');
+		$save['keyword2'] = $response->get('keyword2');
+		$save['keyword3'] = $response->get('keyword3');
+		$save['keyword4'] = $response->get('keyword4');
+		$save['keyword5'] = $response->get('keyword5');
+		$save['ng_keyword1'] = $response->get('ng_keyword1');
+		$save['ng_keyword2'] = $response->get('ng_keyword2');
+		$save['reference_url'] = $response->get('reference_url');
+		$save['post_date'] = date_i18n('Y-m-d H:i:s');
+		$save['post_date_gmt'] = date('Y-m-d H:i:s');
+		
+		$unit_price = 1;
+		if($save['visual_check'] > 0){
+			$unit_price += 0.5;
+		}
+		if($save['use_pro_writer'] > 0){
+			$unit_price += 5;
+		}
+		if($save['title_creation'] > 0){
+			$unit_price += 0.5;
+		}
+		if($save['format_setting'] > 0){
+			$unit_price += 0.5;
+		}
 		$save['unit_price'] = $unit_price;
 		$save['total_price'] = $save['number_articles'] * $save['word_count'] * $unit_price;
 		return $this->insert($save);
     }
-    public function fetchList($params = []){
-    	return $this->fetches([]);
-    }
+	public function fetchList($params = []){
+		return $this->fetches([]);
+	}
+	public function fetchsByIds(array $ids){
+		$where = '';
+		$params = [];
+		foreach($ids as $id){
+			$where .= ' O.id = %d OR';
+			$params[] = $id;
+		}
+		$where = rtrim($where, 'OR');
+		if(empty($where))return [];
+		
+		$sql = "SELECT * FROM $this->tableName as O WHERE {$where}";
+		return $this->wpdb->query( $this->wpdb->prepare($sql, $params) );
+	}
 }
