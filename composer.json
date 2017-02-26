@@ -1,5 +1,9 @@
 {
     "require": {
+        "aaemnnosttv/wordpress-tests-core-installer": "~0.1",
         "phpunit/phpunit": "^4.8"
-    }
+    },
+    "extra": {
+        "wordpress-tests-core-dir": "tests/core"
+    }    
 }
