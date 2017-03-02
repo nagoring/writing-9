@@ -1,4 +1,4 @@
-<?
+<?php
 
 
 //if(Settings::$PAYPAL_SANDBOX == 1){

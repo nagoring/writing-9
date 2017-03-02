@@ -17,6 +17,9 @@ class Order extends Helper{
     public function listTitle(){
         return esc_html($this->order->text_type);
     }
+    public function id(){
+        return (int)$this->order->id;
+    }
     public function number_articles(){
         return (int)$this->order->number_articles;
     }

@@ -242,5 +242,8 @@ class Db {
 	public function getTableSearchItems(){
 		return $this->wpdb->prefix . 'search_items';
 	}
+	public function getLastInsertId(){
+		return $this->wpdb->insert_id;
+	}
 }
 

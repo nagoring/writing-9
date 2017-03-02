@@ -36,7 +36,6 @@ $orderHelper = \Any\Helper\Order::getInstance();
 <div id="post-body-content" style="position: relative;"> 
 
 
-
 <table class="wp-list-table widefat fixed striped posts">
 	<thead>
 	<tr>
@@ -62,7 +61,6 @@ $orderHelper = \Any\Helper\Order::getInstance();
 	</tr>
 	</thead>
 	<tbody>
-	
 	<?php foreach($orders as $order):?>
 	<?php $orderHelper->init($order)?>
 	<tr id="post-1" class="iedit author-self level-0 post-1 type-post status-publish format-standard hentry category-uncategorized">
@@ -90,12 +88,14 @@ $orderHelper = \Any\Helper\Order::getInstance();
 			<!--<label ><progress value="50" max="100"><span>50</span>%</progress><br><?php echo $orderHelper->status()?>-->
 			<form method="post" action="<?php echo get_admin_url() . 'admin.php?page=writing9_order'?>">
 				<input type="hidden" name="order_id" value="<?php echo $orderHelper->id()?>">
+				<?php echo wp_nonce_field('writing9_nonce', '_wpnonce', true, false);?>
 			<?php echo $orderHelper->submitTag()?>
 			</form>
 		</td>
 	</tr>
 	<?php endforeach?>
-		
+<?php 
+/*
 		
 		
 		
@@ -180,6 +180,8 @@ $orderHelper = \Any\Helper\Order::getInstance();
 		<td class="tags column-tags"><label ><progress value="80" max="100"><span>80</span>%</progress><br>記事作成中</td>
 
 		</tr>
+		*/
+?>
 	</tbody>
 </table>
 

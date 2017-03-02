@@ -111,6 +111,6 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		if(empty($where))return [];
 		
 		$sql = "SELECT * FROM $this->tableName as O WHERE {$where}";
-		return $this->wpdb->query( $this->wpdb->prepare($sql, $params) );
+		return $this->wpdb->get_results( $this->wpdb->prepare($sql, $params) );
 	}
 }

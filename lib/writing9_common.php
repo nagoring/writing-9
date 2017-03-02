@@ -11,6 +11,10 @@ $loader->registerDir(__DIR__);
 // $loader->registerDir(__DIR__ . '/Any/Core');
 $loader->register();
 
+define('__ANY_APP_PATH__', __DIR__ . '/..');
+
+
+
 
 function any_app_path(){
     return __DIR__ . '/../';
@@ -53,4 +57,7 @@ function any_is_hash($var){
 }	
 function any_is_date($datetime){
     return $datetime === date("Y-m-d H:i:s", strtotime($datetime));
+}
+function any_notify_url(){
+	return home_url() . '/?writing9_ipn=1';
 }

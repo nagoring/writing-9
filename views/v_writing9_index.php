@@ -22,9 +22,14 @@
 	.tar p{text-align:right !important;margin:0;}
 
 </style>
+<?php 
+// $disabled = 'disabled';
+$disabled = '';
+$post_action = get_admin_url() . 'admin.php?page=writing9_add_order';
+?>
 <div class="wrap">
 <div id="poststuff">
-    <form method="post">
+    <form method="post" action="<?php echo $post_action?>">
         <input type="hidden" name="page" value="writing9_manager" >
         
     
@@ -51,7 +56,7 @@
 			<div id="titlediv">
 				<div id="titlewrap">
 					<label class="" id="title-prompt-text" for="title">ここに記事パターンのタイトルを入力</label>
-					<input type="text" id="title" name="title"><?php echo $response->get('title')?></input>
+					<input type="text" id="title" name="title" <?php echo $disabled?>><?php echo $response->get('title')?></input>
 				</div>
 				<div class="inside">　</div>
 			</div>
@@ -60,27 +65,30 @@
 				<h2 class="hndle ui-sortable-handle">文章タイプ<small>（説明文、体験談、雑学・お役立ち、紹介文など）</small></h2>
 				<div class="inside">
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">文章タイプ・用途<span class="w9-require">必須</span></label></p>
-					<textarea class="w9-textarea" id="text_type" name="text_type" aria-required="true" required="required"><?php echo $response->get('text_type')?></textarea>
+					<textarea class="w9-textarea" id="text_type" name="text_type" aria-required="true" required="required"<?php echo $disabled?>><?php echo $response->get('text_type')?></textarea>
 					<p>説明文、体験談、雑学・お役立ち、紹介文など、どんな文章にしたいのか記入してください。</p>
 					
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">文末表現</label></p>
 					<?php echo any_select('end_of_sentence', $form->get('end_of_sentence'), $response->get('end_of_sentence'), [
 					'aria-required' => true,
 					'id' => 'end_of_sentence',
+					$disabled => $disabled,
 					]);?>
 					
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">テイスト</label></p>	
 					<?php echo any_select('text_taste', $form->get('text_taste'), $response->get('text_taste'), [
 					'id' => 'text_taste',
+					$disabled => $disabled,
 					]);?>
 					
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">記事ジャンル</label></p>	
 					<?php echo any_select('genre', $form->get('genre'), $response->get('genre'), [
 					'id' => 'genre',
+					$disabled => $disabled,
 					]);?>
 					
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">参考URL</label></p>	
-					<input type="text" id="reference_url" name="reference_url" value="<?php echo $response->get('reference_url')?>"></input>
+					<input type="text" id="reference_url" name="reference_url" value="<?php echo $response->get('reference_url')?>" <?php echo $disabled?>></input>
 				</div>
 			</div>
 		
@@ -89,16 +97,16 @@
 				<h2 class="hndle ui-sortable-handle">キーワード設定</h2>
 				<div class="inside">
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">メインワード</label><span class="w9-require">必須</span></p>
-					<input type="text" id="main_word" name="main_word" required="required" value="<?php echo $response->get('main_word')?>"></input>
+					<input type="text" id="main_word" name="main_word" required="required" value="<?php echo $response->get('main_word')?>" <?php echo $disabled?>></input>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">キーワード</label></p>
-					<input type="text" id="keyword1" name="keyword1" value="<?php echo $response->get('keyword1')?>"></input>
-					<input type="text" id="keyword2" name="keyword2" value="<?php echo $response->get('keyword2')?>"></input>
-					<input type="text" id="keyword3" name="keyword3" value="<?php echo $response->get('keyword3')?>"></input>
-					<input type="text" id="keyword4" name="keyword4" value="<?php echo $response->get('keyword4')?>"></input>
-					<input type="text" id="keyword5" name="keyword5" value="<?php echo $response->get('keyword5')?>"></input>
+					<input type="text" id="keyword1" name="keyword1" value="<?php echo $response->get('keyword1')?>" <?php echo $disabled?>></input>
+					<input type="text" id="keyword2" name="keyword2" value="<?php echo $response->get('keyword2')?>" <?php echo $disabled?>></input>
+					<input type="text" id="keyword3" name="keyword3" value="<?php echo $response->get('keyword3')?>" <?php echo $disabled?>></input>
+					<input type="text" id="keyword4" name="keyword4" value="<?php echo $response->get('keyword4')?>" <?php echo $disabled?>></input>
+					<input type="text" id="keyword5" name="keyword5" value="<?php echo $response->get('keyword5')?>" <?php echo $disabled?>></input>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">NGワード</label></p>
-					<input type="text" id="ng_keyword1" name="ng_keyword1" value="<?php echo $response->get('ng_keyword1')?>"></input>
-					<input type="text" id="ng_keyword2" name="ng_keyword2" value="<?php echo $response->get('ng_keyword2')?>"></input>
+					<input type="text" id="ng_keyword1" name="ng_keyword1" value="<?php echo $response->get('ng_keyword1')?>" <?php echo $disabled?>></input>
+					<input type="text" id="ng_keyword2" name="ng_keyword2" value="<?php echo $response->get('ng_keyword2')?>" <?php echo $disabled?>></input>
 				</div>
 			</div>
 			
@@ -114,9 +122,9 @@
 				<h2 class="hndle ui-sortable-handle">希望記事数・文字数</h2>
 				<div class="inside">
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">記事数<span class="w9-require">必須</span></label></p>
-					<input type="number" id="number_articles" name="number_articles" required="required" value="<?php echo $response->get('number_articles')?>"></input>
+					<input type="number" id="number_articles" name="number_articles" required="required" value="<?php echo $response->get('number_articles')?>" <?php echo $disabled?>></input>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">文字数</label><span class="w9-require">必須</span></p>
-					<input type="number" id="word_count" name="word_count" value="<?php echo $response->get('word_count')?>"></input>
+					<input type="number" id="word_count" name="word_count" value="<?php echo $response->get('word_count')?>" <?php echo $disabled?>></input>
 				</div>
 				<div id="major-publishing-actions">
 					<div id="delete-action">
@@ -125,8 +133,8 @@
 				<div id="publishing-action">
 					
 				<span class="spinner"></span>
-						<input name="original_publish" type="hidden" id="original_publish" value="作成">
-						<input name="save" type="submit" class="button button-primary button-large" id="publish" value="作成">
+						<input name="original_publish" type="hidden" id="original_publish" value="<?php echo $submit_text?>">
+						<input name="save" type="submit" class="button button-primary button-large" id="publish" value="<?php echo $submit_text?>">
 				</div>
 				<div class="clear"></div>
 				</div>
@@ -140,14 +148,16 @@
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">目視チェック（@+0.5円）</label></p>
 					<?php echo any_select('visual_check', $form->get('visual_check'), $response->get('visual_check'), [
 						'id' => 'visual_check',
+						$disabled => $disabled,
 					]);?>
 					
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">プロライターの起用（@+5円）</label></p>
 					<?php echo any_select('use_pro_writer', $form->get('use_pro_writer'), $response->get('use_pro_writer'), [
 						'id' => 'use_pro_writer',
+						$disabled => $disabled,
 					]);?>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">特記事項</label></p>
-					<textarea class="w9-textarea" id="note" name="note"><?php echo $response->get('note')?></textarea>
+					<textarea class="w9-textarea" id="note" name="note"<?php echo $disabled?>><?php echo $response->get('note')?></textarea>
 				</div>
 			</div>
 			
@@ -157,17 +167,19 @@
 				<div class="inside">
 				<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">タイトル作成（@+0.5円）</label></p>
 				<?php echo any_select('title_creation', $form->get('title_creation'), $response->get('title_creation'), [
-				'id' => 'title_creation',
+					'id' => 'title_creation',
+					$disabled => $disabled,
 				]);?>
 				
 				<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">フォーマット設定（@+0.5円）</label></p>
 				<?php echo any_select('format_setting', $form->get('format_setting'), $response->get('format_setting'), [
-				'id' => 'format_setting',
+					'id' => 'format_setting',
+					$disabled => $disabled,
 				]);?>
 				<p>小見出しの設定やプルダウン形式のアンケート回答が欲しい場合は入力してください。</p>
 				
 				<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">ご要望</label></p>
-				<textarea class="w9-textarea" id="format_setting_note" name="format_setting_note"><?php echo $response->get('format_setting_note')?></textarea>
+				<textarea class="w9-textarea" id="format_setting_note" name="format_setting_note" <?php echo $disabled?>><?php echo $response->get('format_setting_note')?></textarea>
 				<p>記事作成の際に努力いたしますが、完全にご希望には添えない場合があります。</p>
 				
 				</div>

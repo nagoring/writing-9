@@ -19,6 +19,13 @@ class Error{
     }
     public function add($message){
         $this->messages[] = $message;
+        if(!isset($_SESSION['any'])){
+            $_SESSION['any'] = ['error' => []];
+        }
+        $_SESSION['any']['error'] = $message;
+    }
+    public function clear(){
+        
     }
     public function isNotError(){
         return $this->length() == 0;
