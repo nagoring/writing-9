@@ -29,7 +29,7 @@ class Calculator{
 		return $order->word_count * $order->number_articles * $unit_price;
 	}
 	private function calcUnitPriceByOrder($order){
-		$unit_price = 0;
+		$unit_price = 1;
 		if($order->use_pro_writer == 1){
 			$unit_price += 5.0;
 		}

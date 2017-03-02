@@ -32,9 +32,11 @@ class Order extends Helper{
     public function status(){
         return \Any\Definition\EStatus::text($this->order->status);
     }
-    public function submitTag(){
+    public function submitTag($order_id){
         $submit_text = \Any\Definition\EStatus::submitText($this->order->status);
-        $html = "<input name=\"save\" type=\"submit\" class=\"button button-primary button-large\" id=\"publish\" value=\"{$submit_text}\">";
+        $url = get_admin_url() ."admin.php?page=writing9_order&order_ids[]={$order_id}";
+        
+        $html = "<input name=\"save\" type=\"button\" class=\"button button-primary button-large\" id=\"publish\" value=\"{$submit_text}\" onclick=\"location.href='$url'\">";
         return $html;
     }
 }
