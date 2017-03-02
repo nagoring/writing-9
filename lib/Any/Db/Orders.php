@@ -98,9 +98,12 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		return $this->insert($save);
     }
 	public function fetchList($params = []){
-		return $this->fetches([]);
+		$order = ' ORDER BY O.id DESC ';
+		$where = '1';
+		$sql = "SELECT * FROM $this->tableName as O WHERE {$where} {$order}";
+		return $this->wpdb->get_results( $this->wpdb->prepare($sql, $params) );
 	}
-	public function fetchsByIds(array $ids){
+	public function fetchsWithNotOrderByIds(array $ids){
 		$where = '';
 		$params = [];
 		foreach($ids as $id){
@@ -110,7 +113,8 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		$where = rtrim($where, 'OR');
 		if(empty($where))return [];
 		
-		$sql = "SELECT * FROM $this->tableName as O WHERE {$where}";
+		$order = " ORDER BY O.id DESC ";
+		$sql = "SELECT * FROM $this->tableName as O WHERE {$where} {$order}";
 		return $this->wpdb->get_results( $this->wpdb->prepare($sql, $params) );
 	}
 }
