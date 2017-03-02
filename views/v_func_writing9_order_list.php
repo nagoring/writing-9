@@ -10,8 +10,6 @@ $orderHelper = \Any\Helper\Order::getInstance();
     <h1 class="wp-heading-inline">記事パターン一覧</h1>
     <a href="admin.php?page=writing9_manager" class="page-title-action">新規追加</a>
     <hr class="wp-header-end">
-    
-	
 		<hr >
 	
 

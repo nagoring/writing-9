@@ -61,3 +61,13 @@ function any_is_date($datetime){
 function any_notify_url(){
 	return home_url() . '/?writing9_ipn=1';
 }
+function any_hidden_menu_page($slug, $function){
+	global $_registered_pages;
+	$menu_slug = plugin_basename( $slug );
+	$hookname = get_plugin_page_hookname( $menu_slug, '' );
+	add_action( $hookname, $function );
+	$_registered_pages[$hookname] = true;
+}
+function any_writing9_private_key(){
+	return get_option('writing9_private_key', '');
+}

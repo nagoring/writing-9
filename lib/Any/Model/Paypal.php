@@ -1,4 +1,7 @@
 <?php
+namespace Any\Model;
+
+
 class Paypal{
 	private $paypal_domain;
 	private $post;
