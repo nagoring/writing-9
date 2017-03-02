@@ -31,20 +31,14 @@ if ( is_admin()) {
 	function writing9_order() {
 	  add_options_page('注文画面', '注文画面', 8, 'writing9_order', 'func_writing9_order_page');
 	  //$hookname = get_plugin_page_hookname( 'banner_menu', 'banner_options_page');
-	  //var_dump($hookname);
-	  //echo "bbbbbbbbbbbbb<br>";
-	  //exit;
 	}
 	
 	function func_writing9_order_page() {
-		if(any_safe($_SERVER, 'REQUEST_METHOD', false) != 'POST'){
-            wp_die('Error! ');
-		}
         //Check nonce
-        $nonce = $_REQUEST['_wpnonce'];
-        if ( !wp_verify_nonce($nonce, 'writing9_nonce')){
-            wp_die('Error! Nonce Security Check Failed!');
-        }
+        // $nonce = $_REQUEST['_wpnonce'];
+        // if ( !wp_verify_nonce($nonce, 'writing9_nonce')){
+        //     wp_die('Error! Nonce Security Check Failed!');
+        // }
 		
 		// HTML を表示させるコード
 		$error = \Any\Core\Error::getInstance();
@@ -53,15 +47,17 @@ if ( is_admin()) {
 		$response = \Any\Core\Response::getInstance(); 
 		$ordersDb = \Any\Db\Orders::getInstance();
 		$order_ids = [];
-		if(isset($_POST['order_id'])){
-			$order_ids[] = $_POST['order_id'];
-		}else if(isset($_POST['order_ids'])){
-			$order_ids = $_POST['order_ids'];
+		if(isset($_GET['order_id'])){
+			$order_ids[] = $_GET['order_id'];
+		}else if(isset($_GET['order_ids'])){
+			$order_ids = $_GET['order_ids'];
 		}else{
 			throw new Exception("failed order ids");
 		}
+		
+		
 		$response->set('order_ids', $order_ids);
-		$orders = $ordersDb->fetchsByIds($response->get('order_ids'));
+		$orders = $ordersDb->fetchsWithNotOrderByIds($response->get('order_ids'));
 		if(empty($orders)){
 			wp_die('オーダーがありません。記事パターンを作成してください');
 		}
@@ -70,7 +66,6 @@ if ( is_admin()) {
 			$order_ids_text .= $order_id . ',';
 		}
 		$order_ids_text = rtrim($order_ids_text, ',');
-
 		try{
 			$total_price = \Any\Model\Calculator::getInstance()->calcTotalByOrders($orders);
 			$view->render('views/v_func_writing9_order_page.php', [

@@ -86,11 +86,9 @@ $orderHelper = \Any\Helper\Order::getInstance();
 		<td><?php echo $orderHelper->status()?><br><abbr title="<?php echo $orderHelper->post_date()?>"><?php echo $orderHelper->post_date()?></abbr></td>
 		<td class="tags column-tags">
 			<!--<label ><progress value="50" max="100"><span>50</span>%</progress><br><?php echo $orderHelper->status()?>-->
-			<form method="post" action="<?php echo get_admin_url() . 'admin.php?page=writing9_order'?>">
-				<input type="hidden" name="order_id" value="<?php echo $orderHelper->id()?>">
-				<?php echo wp_nonce_field('writing9_nonce', '_wpnonce', true, false);?>
-			<?php echo $orderHelper->submitTag()?>
-			</form>
+				<?php //echo wp_nonce_field('writing9_nonce', '_wpnonce', true, false);?>
+				<input type="hidden" name="page" value="writing9_order">
+			<?php echo $orderHelper->submitTag($orderHelper->id())?>
 		</td>
 	</tr>
 	<?php endforeach?>

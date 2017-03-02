@@ -1,9 +1,0 @@
-start callstart callstart callstart callstart callpage okoriginal_publish okvalidate okstart callstart callstart call
-start call
-start call
-start call
-start call
-validate ok
-Not validate
-Not validate
-validate ok
