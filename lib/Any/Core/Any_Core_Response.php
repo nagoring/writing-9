@@ -1,9 +1,7 @@
 <?php
-namespace Any\Core;
 
-
-class Response{
-    public $data = [];
+class Any_Core_Response{
+    public $data = array();
     public function getInstance(){
         static $instance = null;
         if($instance === null){

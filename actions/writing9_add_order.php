@@ -1,6 +1,6 @@
 <?php
 function validate_ordering(){
-	$error = \Any\Core\Error::getInstance();
+	$error = Any_Core_Error::getInstance();
     if(!isset($_POST['text_type']) || empty($_POST['text_type'])){
 		$error->add("文章タイプを入力してください");
     }
@@ -19,7 +19,7 @@ function validate_ordering(){
 function writing9_add_order() {
 	if ( isset($_GET['page']) && $_GET['page'] == 'writing9_add_order' ) {
 	    if(isset($_POST['original_publish']) && strlen($_POST['original_publish']) > 0){
-			$response = \Any\Core\Response::getInstance();
+			$response = Any_Core_Response::getInstance();
 			$response->set('text_type', any_safe($_POST, 'text_type', ''));
 			$response->set('end_of_sentence', any_safe($_POST, 'end_of_sentence', ''));
 			$response->set('purpose_ariticle', any_safe($_POST, 'purpose_ariticle', ''));
@@ -44,8 +44,8 @@ function writing9_add_order() {
 			$response->set('ng_keyword2', any_safe($_POST, 'ng_keyword2', ''));
 			$response->set('reference_url', any_safe($_POST, 'reference_url', ''));
 		    if(validate_ordering()){
-	\Any\Core\Log::write('add_order.txt', 'validate ok');
-				$ordersDb = \Any\Db\Orders::getInstance();
+	Any_Core_Log::write('add_order.txt', 'validate ok');
+				$ordersDb = Any_Db_Orders::getInstance();
 				$ordersDb->saveResponse($response);
 				$order_id = $ordersDb->getLastInsertId();
 				$post_action = '';
@@ -59,14 +59,14 @@ function writing9_add_order() {
 				wp_redirect(get_admin_url() . 'admin.php?page=writing9_order_list');
 				exit();
 		    }else{
-	\Any\Core\Log::write('add_order.txt', 'Not validate');
+	Any_Core_Log::write('add_order.txt', 'Not validate');
 		    	$_SESSION['any'] = ['response' => serialize($response)];
-				$error = \Any\Core\Error::getInstance();
+				$error = Any_Core_Error::getInstance();
 				wp_redirect(get_admin_url() . 'admin.php?page=writing9_manager');
 				exit();
 		    }
 	    }
-	\Any\Core\Log::write('add_order.txt', 'end');
+	Any_Core_Log::write('add_order.txt', 'end');
     	
 	}
 }	

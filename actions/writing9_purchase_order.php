@@ -3,12 +3,12 @@
 	function func_writing9_purchase_order() {
 		
 		// HTML を表示させるコード
-		$error = \Any\Core\Error::getInstance();
-		$view = \Any\Core\View::getInstance();
+		$error = Any_Core_Error::getInstance();
+		$view = Any_Core_View::getInstance();
 		$form = \Any\Definition\Form::getInstance();
-		$response = \Any\Core\Response::getInstance(); 
-		$ordersDb = \Any\Db\Orders::getInstance();
-		$order_ids = [];
+		$response = Any_Core_Response::getInstance(); 
+		$ordersDb = Any_Db_Orders::getInstance();
+		$order_ids = array();
 		if(isset($_GET['order_id'])){
 			$order_ids[] = $_GET['order_id'];
 		}else if(isset($_GET['order_ids'])){
@@ -32,7 +32,7 @@
 		
 		try{
 			$total_price = \Any\Model\Calculator::getInstance()->calcTotalByOrders($orders);
-			$view->render('views/v_func_writing9_purchase_order.php', [
+			$view->render('views/v_func_writing9_purchase_order.php', array(
 				'form' => $form,
 				'error' => $error,
 				'response' => $response,
@@ -40,8 +40,8 @@
 				'total_price' => $total_price,
 				'order_ids_text' => $order_ids_text,
 				'custom' => $custom,
-			]);
+			));
 		}catch(\Exception $e){
-			$view->render('views/v_exception_total_price.php', []);
+			$view->render('views/v_exception_total_price.php', array());
 		}
 	}	

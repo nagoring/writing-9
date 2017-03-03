@@ -1,8 +1,5 @@
 <?php 
-namespace Any\Core;
-
-
-class ClassLoader{
+class Any_Core_ClassLoader{
     protected $dirs;
     public function getInstance(){
         static $instance = null;

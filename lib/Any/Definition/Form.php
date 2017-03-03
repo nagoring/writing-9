@@ -2,34 +2,34 @@
 namespace Any\Definition;
 
 class Form{
-    public $text_taste = [
+    public $text_taste = array(
         1 => '固め',
         2 => '緩め'
-    ];
-    public $end_of_sentence = [
+    );
+    public $end_of_sentence = array(
         0 => '指定なし',
         1 => 'ですます調'
-    ];
-    public $title_creation = [
+    );
+    public $title_creation = array(
         0 => '無',
         1 => '有'
-    ];
-    public $visual_check = [
+    );
+    public $visual_check = array(
         0 => '無',
         1 => '有'
-    ];
-    public $format_setting = [
+    );
+    public $format_setting = array(
         0 => '無',
         1 => '小見出し形式',
         2 => 'プルダウン形式',
         3 => '画像選定',
         4 => 'その他'
-    ];
-    public $use_pro_writer = [
+    );
+    public $use_pro_writer = array(
         0 => '無',
         1 => '希望する',
-    ];
-    public $genre = [
+    );
+    public $genre = array(
         1 => '健康',
         2 => '美容',
         3 => 'ファッション/アパレル/装飾品',
@@ -66,7 +66,7 @@ class Form{
         34 => 'お悩み',
         35 => 'イベント',
         36 => 'その他',
-    ];
+    );
     public static function getInstance(){
         static $instance = null;
         if($instance === null){

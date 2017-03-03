@@ -1,11 +1,11 @@
 <?php 
-namespace Any\Core;
 
-class Log{
+class Any_Core_Log{
 	public static function write($filename, $msg){
+		$date = date('YmdHis');
 		$filepath = __ANY_APP_PATH__ . '/tmp/log/' . $filename;
 		$fp = fopen($filepath, 'a');
-		fputs($fp, $msg . PHP_EOL);
+		fputs($fp, $date . ':' . $msg . PHP_EOL);
 		fclose($fp);
 	}
 }

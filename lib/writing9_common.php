@@ -2,13 +2,17 @@
 //******************************************************************************
 // include/require
 //******************************************************************************
-require_once __DIR__ . '/Any/Core/ClassLoader.php';
+require_once __DIR__ . '/Any/Core/Any_Core_ClassLoader.php';
 //******************************************************************************
 // autoload
 //******************************************************************************
-$loader = new \Any\Core\ClassLoader();
+$loader = new Any_Core_ClassLoader();
 $loader->registerDir(__DIR__);
-// $loader->registerDir(__DIR__ . '/Any/Core');
+$loader->registerDir(__DIR__ . '/Any/Core');
+$loader->registerDir(__DIR__ . '/Any/Db');
+$loader->registerDir(__DIR__ . '/Any/Definition');
+$loader->registerDir(__DIR__ . '/Any/Helper');
+$loader->registerDir(__DIR__ . '/Any/Model');
 $loader->register();
 
 define('__ANY_APP_PATH__', __DIR__ . '/..');

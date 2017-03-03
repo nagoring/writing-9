@@ -1,7 +1,6 @@
 <?php
-namespace Any\Db;
 
-class Db {
+class Any_Db_Db {
 	public $tableName;
 	public $ignore = '';
 	public $prefix = '';
@@ -53,6 +52,8 @@ class Db {
 		// echo "sql:$sql<br>" . PHP_EOL;
 		// exit;
 //		return $this->wpdb->query($sql);
+Any_Core_Log::write('insert', 'sql:' . $sql);
+Any_Core_Log::write('insert', 'params:' . var_export($value_array, true));
 		return $this->wpdb->query( $this->wpdb->prepare($sql, $value_array) );
 	}
 	/**
@@ -100,7 +101,7 @@ class Db {
 						$where_after .= $k1 . ' = %s';
 					}
 					$value_array[] = $v1;
-					//一回しかループしない(入力値の特性上)
+					//一要素の配列のため
 					break;
 				}
 			}
@@ -150,7 +151,7 @@ class Db {
 						$where_after .= $k1 . ' = %s';
 					}
 					$value_array[] = $v1;
-					//一回しかループしない(入力値の特性上)
+					//一要素の配列のため
 					break;
 				}
 			}

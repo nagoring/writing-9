@@ -1,7 +1,5 @@
 <?php 
-namespace Any\Db;
-
-class Orders extends Db{
+class Any_Db_Orders extends Any_Db_Db{
 	protected function __construct() {
 		parent::__construct("w9_orders");
 	}
@@ -53,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		return $wpdb->query($sql);
 	}
 	public function saveResponse($response){
-		$save = [];
+		$save = array();
 		$save['text_type'] = $response->get('text_type');
 		$save['end_of_sentence'] = (int)$response->get('end_of_sentence');
 		$save['purpose_ariticle'] = $response->get('purpose_ariticle');
@@ -97,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		$save['total_price'] = $save['number_articles'] * $save['word_count'] * $unit_price;
 		return $this->insert($save);
     }
-	public function fetchList($params = []){
+	public function fetchList($params = array()){
 		$order = ' ORDER BY O.id DESC ';
 		$where = '1';
 		$sql = "SELECT * FROM $this->tableName as O WHERE {$where} {$order}";
@@ -105,16 +103,29 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 	}
 	public function fetchsWithNotOrderByIds(array $ids){
 		$where = '';
-		$params = [];
+		$params = array();
 		foreach($ids as $id){
 			$where .= ' O.id = %d OR';
 			$params[] = $id;
 		}
 		$where = rtrim($where, 'OR');
-		if(empty($where))return [];
+		if(empty($where))return array();
 		
 		$order = " ORDER BY O.id DESC ";
 		$sql = "SELECT * FROM $this->tableName as O WHERE {$where} {$order}";
+		return $this->wpdb->get_results( $this->wpdb->prepare($sql, $params) );
+	}
+	public function updateStatusByOrderIds(array $orderIdsArray, $status){
+		$where = '';
+		$params = array();
+		$params[] = $status;
+		foreach($orderIdsArray as $id){
+			$where .= ' O.id = %d OR';
+			$params[] = $id;
+		}
+		$where = rtrim($where, 'OR');
+		if(empty($where))return false;
+		$sql = "UPDATE {$this->tableName} as O SET `status`=%d WHERE {$where}";
 		return $this->wpdb->get_results( $this->wpdb->prepare($sql, $params) );
 	}
 }

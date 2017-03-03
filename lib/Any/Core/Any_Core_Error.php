@@ -1,9 +1,6 @@
 <?php 
-namespace Any\Core;
-
-
-class Error{
-    public $messages = [];
+class Any_Core_Error{
+    public $messages = array();
     public function getInstance(){
         static $instance = null;
         if($instance === null){
@@ -20,7 +17,7 @@ class Error{
     public function add($message){
         $this->messages[] = $message;
         if(!isset($_SESSION['any'])){
-            $_SESSION['any'] = ['error' => []];
+            $_SESSION['any'] = array('error' => array());
         }
         $_SESSION['any']['error'] = $message;
     }

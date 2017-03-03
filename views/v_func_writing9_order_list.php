@@ -11,7 +11,6 @@ $orderHelper = \Any\Helper\Order::getInstance();
     <a href="admin.php?page=writing9_manager" class="page-title-action">新規追加</a>
     <hr class="wp-header-end">
 		<hr >
-	
 
 <ul class="subsubsub">
 	<li class="all"><a href="edit.php?post_type=post" class="current">すべて <span class="count">(2)</span></a> |</li>

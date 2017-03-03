@@ -1,7 +1,6 @@
 <?php 
-namespace Any\Core;
 
-class View{
+class Any_Core_View{
     public static function getInstance(){
         static $instance = null;
         if($instance === null){
