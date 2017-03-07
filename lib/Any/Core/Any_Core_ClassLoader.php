@@ -19,7 +19,7 @@ class Any_Core_ClassLoader{
             $file = $dir . '/' . $class . '.php';
             $file = str_replace('\\', '/', $file);
             if (is_readable($file)) {
-                require $file;
+                require_once $file;
                 return;
             }else{
 
