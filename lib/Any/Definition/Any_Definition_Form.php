@@ -1,7 +1,6 @@
 <?php 
-namespace Any\Definition;
 
-class Form{
+class Any_Definition_Form{
     public $text_taste = array(
         1 => '固め',
         2 => '緩め'
@@ -77,5 +76,4 @@ class Form{
     public function get($key){
         return $this->$key;
     }
-
 }

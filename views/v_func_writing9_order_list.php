@@ -1,5 +1,5 @@
 <?php 
-$orderHelper = \Any\Helper\Order::getInstance();
+$orderHelper = Any_Helper_Order::getInstance();
 ?>
 <div class="wrap">
 <div id="poststuff">

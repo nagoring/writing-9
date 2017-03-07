@@ -13,7 +13,6 @@
  */
 include_once __DIR__ . '/lib/writing9_common.php';
 
-
 if ( is_admin()) {
 	//Activateしたときの実行処理
 	register_activation_hook(__FILE__, 'activation_wrting9_plugin');

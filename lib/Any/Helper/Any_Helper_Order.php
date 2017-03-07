@@ -1,8 +1,6 @@
 <?php
-namespace Any\Helper;
 
-
-class Order extends Helper{
+class Any_Helper_Order extends Any_Helper_Helper{
     public $order;
     public static function getInstance(){
         static $instance = null;

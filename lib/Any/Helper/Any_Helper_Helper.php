@@ -1,7 +1,5 @@
 <?php
-namespace Any\Helper;
-
-abstract class Helper{
+abstract class Any_Helper_Helper{
     abstract function init($object);
 }
 

@@ -5,7 +5,7 @@
 		// HTML を表示させるコード
 		$error = Any_Core_Error::getInstance();
 		$view = Any_Core_View::getInstance();
-		$form = \Any\Definition\Form::getInstance();
+		$form = Any_Definition_Form::getInstance();
 		$response = Any_Core_Response::getInstance(); 
 		$ordersDb = Any_Db_Orders::getInstance();
 		$order_ids = array();
@@ -31,7 +31,7 @@
 		$custom = any_writing9_private_key() . ';' . $order_ids_text;
 		
 		try{
-			$total_price = \Any\Model\Calculator::getInstance()->calcTotalByOrders($orders);
+			$total_price = Any_Model_Calculator::getInstance()->calcTotalByOrders($orders);
 			$view->render('views/v_func_writing9_purchase_order.php', array(
 				'form' => $form,
 				'error' => $error,

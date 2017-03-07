@@ -1,10 +1,8 @@
 <?php
-namespace Any\Model;
 
-
-class Calculator{
+class Any_Model_Calculator{
 	/**
-	 * @return \Any\Model\Calculator
+	 * @return Any_Model_Calculator
 	 */
 	public static function getInstance(){
 		static $instance = null;
