@@ -13,7 +13,7 @@ class Any_Model_CalculatorTest extends WP_UnitTestCase {
 			$order->visual_check = 0;
 			$order->title_creation = 0;
 			$order->format_setting = 0;
-			$this->assertSame(1, any_test_method($calculator, 'calcUnitPriceByOrder', array($order)));
+			$this->assertSame(1, $calculator->_calcUnitPriceByOrder($order));
 		// any_test_method
 		// Closure::bind(function(){
 		// }, $this, 'Any_Model_Calculator')->__invoke();
@@ -25,6 +25,6 @@ class Any_Model_CalculatorTest extends WP_UnitTestCase {
 		$order->visual_check = 1;
 		$order->title_creation = 1;
 		$order->format_setting = 1;
-		$this->assertSame(7.5, any_test_method($calculator, 'calcUnitPriceByOrder', array($order)));
+		$this->assertSame(7.5, $calculator->_calcUnitPriceByOrder($order));
 	}
 }

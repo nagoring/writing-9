@@ -14,7 +14,7 @@ class Any_Model_Calculator{
 	public function calcTotalByOrders($orders){
 		$total = 0;
 		foreach($orders as $order){
-			$total += $this->calcTotalByOrder($order);
+			$total += $this->_calcTotalByOrder($order);
 			if($order->total_price != $total){
 				throw new \Exception('Different total price.');
 			}	
@@ -22,11 +22,11 @@ class Any_Model_Calculator{
 		return $total;
 	}
 
-	private function calcTotalByOrder($order){
-		$unit_price = $this->calcUnitPriceByOrder($order);
+	function _calcTotalByOrder($order){
+		$unit_price = $this->_calcUnitPriceByOrder($order);
 		return $order->word_count * $order->number_articles * $unit_price;
 	}
-	private function calcUnitPriceByOrder($order){
+	function _calcUnitPriceByOrder($order){
 		$unit_price = 1;
 		if($order->use_pro_writer == 1){
 			$unit_price += 5.0;
