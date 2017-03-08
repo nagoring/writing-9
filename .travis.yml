@@ -1,37 +1,28 @@
 language: php
-
 notifications:
   email:
     on_success: never
     on_failure: change
-
+  slack:
+    secure: wwr/e2qTvScz99hsdIlinAxe4Cq8CVu+0b9rdMLqlkQebmDhLptOGAP1dUzkzCOhTSeEKeg4glaCnIwlL7xgMVrDWP0obN8UMOBOauTf2lZZS1IlAQyiMD5WH6Ns+FIdKOlXKFpfcLoSXwjjJqJXz9vBYbT+58cMZIH2ayQsuusRurSTwKXu4qvr9GabpPK2NkSu4SWv7/0jI6wOWWC5clgwai3DO2AelwX+jaeg0UlSanPcMD4eDrm5usWcz6H0k7fUii3NIDdaf3z4I4ig6WqzZyivRkrKWzLRIWBvzcLxiCyoBvwiqHhP9R5eUdp5jlwI1W2k43gyq6H62V1AZ6C7wCmKWG+l743IKvYQep5LmYC8G4xxp2USMYZW8ccD93qqSuL/TahNAboKAPbN6kCQX99wGqXlT0ZTcUskewxUet6p4ba63etuhjwBZzFBLFngdERjSQWw5BcvbeIBr58Jbko9ZzYJZCvjp7hb904tBElOf4yGecLlPhog/dp07PC9Xf2REHuuYmqt9IGeKMqgWFiDzsnXOg9XOYTX9uFsK0YB35P1IDlQ2J04+bExPqfeTViQ3iyMmfabxuZxYglbUxp29l22lPJZYDh7+SfikiMIoYdstZd54DeEXumkLFsuUFIEYVUVtbzvkLozJQqDOTdgtRwGhcWHi5eif8U=
 branches:
   only:
-    - master
-
+  - master
 php:
-  - 5.2
-  - 5.6
-  - 7.1
-
+- 5.2
+- 5.6
+- 7.1
 env:
-  - WP_VERSION=latest WP_MULTISITE=0
-  - WP_VERSION=4.7.3 WP_MULTISITE=0
-
-
+- WP_VERSION=latest WP_MULTISITE=0
+- WP_VERSION=4.7.3 WP_MULTISITE=0
 before_script:
-  - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
-  - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - |
-    if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.0" ]]; then
-      composer global require "phpunit/phpunit=5.6.*"
-    else
-      composer global require "phpunit/phpunit=4.8.*"
-    fi
-#  - |
-#    composer global require wp-coding-standards/wpcs
-#    phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
-
+- bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+- export PATH="$HOME/.composer/vendor/bin:$PATH"
+- |
+  if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.0" ]]; then
+    composer global require "phpunit/phpunit=5.6.*"
+  else
+    composer global require "phpunit/phpunit=4.8.*"
+  fi
 script:
-#  - phpcs --standard=phpcs.ruleset.xml $(find . -name '*.php')
-  - phpunit
+- phpunit
