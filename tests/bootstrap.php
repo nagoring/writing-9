@@ -1,4 +1,5 @@
 <?php
+include_once dirname(__FILE__) . '/../lib/writing9_common.php';
 /**
  * PHPUnit bootstrap file
  *
