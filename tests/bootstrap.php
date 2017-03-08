@@ -5,6 +5,17 @@
  * @package Writing_9
  */
 
+function any_test_method($class, $method, $args = null){
+	$method = new ReflectionMethod(get_class($class), $method);
+	$method->setAccessible(true);
+	if($args === null){
+		return $method->invoke($class);
+	}else{
+		return $method->invokeArgs($class, $args);
+	}
+}
+
+
 $_tests_dir = getenv( 'WP_TESTS_DIR' );
 if ( ! $_tests_dir ) {
 	$_tests_dir = '/tmp/wordpress-tests-lib';
