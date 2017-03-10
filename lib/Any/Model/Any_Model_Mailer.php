@@ -11,12 +11,18 @@ class Any_Model_Mailer{
 		}
 		return $instance;
 	}
-	public function createMailBodyParameter($orders){
-		$orderHelper = Any_Helper_Order::getInstance();
+	public function createMailBodyParameters($orders){
+		$order_body = '';
 		foreach($orders as $order){
-			
+			$order_body .= $this->_createMailBodyParameter($order);
 		}
 		
+	}
+	function _createMailBodyParameter($order){
+		$orderHelper = Any_Helper_Order::getInstance();
+		$orderHelper->init($order);
+		$view = Any_Core_View::getInstance();
+		return $view->load('m/m_purchase_order');
 	}
 
 }
