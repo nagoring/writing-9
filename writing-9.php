@@ -76,8 +76,8 @@ if ( is_admin()) {
 	add_action('init', 'writing9_init_handler');
 }
 function writing9_init_handler(){
-	if(!isset($_REQUEST['writing9_ipn'])) return;
-
+	$option = get_option('Any_Writing9');
+	if(!isset($_POST['writing9_ipn']) && $_POST['writing9_ipn'] !== $option['ipn']) return;
 
 	$paypal = new Any_Model_Paypal($_POST);
 	$paypal->connect();

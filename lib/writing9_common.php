@@ -63,7 +63,10 @@ function any_is_date($datetime){
     return $datetime === date("Y-m-d H:i:s", strtotime($datetime));
 }
 function any_notify_url(){
-	return home_url() . '/?writing9_ipn=1';
+	$option = get_option('Any_Writing9', false);
+	$option = any_writing9_set_setting_and_get();
+	$ipn = $option['ipn'];
+	return home_url() . '/?writing9_ipn=' . $ipn;
 }
 function any_hidden_menu_page($slug, $function){
 	global $_registered_pages;
@@ -74,4 +77,19 @@ function any_hidden_menu_page($slug, $function){
 }
 function any_writing9_private_key(){
 	return get_option('writing9_private_key', '');
+}
+function any_writing9_set_setting_and_get(){
+	$option = get_option('Any_Writing9', array());
+	if(!isset($option['email']) || $option['email'] === ''){
+		$option['email'] = get_option('admin_email');
+	}
+	if(!isset($option['ipn']) || $option['ipn'] === ''){
+		$option['ipn'] = wp_hash(rand(0, 9999), 'writing9');
+	}
+	update_option('Any_Writing9', $option, 'no');
+	$option = get_option('Any_Writing9', false);
+	if($option === false){
+		throw new Exception('Not update option');
+	}
+	return $option;
 }
