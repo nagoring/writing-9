@@ -11,12 +11,8 @@ class Any_Model_PaypalTest extends WP_UnitTestCase {
 			'custom' => 'abcdefg;1,2,3,4,5'
 		);
 		$paypal = new Any_Model_Paypal($post);
-		$paypal->_extructCustom();
-		$order = new stdClass();
-		$order->use_pro_writer = 0;
-		$order->visual_check = 0;
-		$order->title_creation = 0;
-		$order->format_setting = 0;
-		$this->assertSame(1, $paypal->_calcUnitPriceByOrder($order));
+		$array = $paypal->_extructCustom();
+		$this->assertSame('abcdefg', $array[0]);
+		$this->assertSame('1,2,3,4,5', $array[1]);
 	}
 }
