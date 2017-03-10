@@ -80,9 +80,9 @@ $orderHelper = Any_Helper_Order::getInstance();
 		</td>
 		<td class="author column-author"><?php echo $orderHelper->number_articles()?><small>記事</small></td>
 		<td class="categories column-categories"><?php echo $orderHelper->word_count()?><small>文字</small></td>
-		<td><?php echo $orderHelper->status()?><br><abbr title="<?php echo $orderHelper->post_date()?>"><?php echo $orderHelper->post_date()?></abbr></td>
+		<td><?php echo $orderHelper->statusText()?><br><abbr title="<?php echo $orderHelper->post_date()?>"><?php echo $orderHelper->post_date()?></abbr></td>
 		<td class="tags column-tags">
-			<!--<label ><progress value="50" max="100"><span>50</span>%</progress><br><?php echo $orderHelper->status()?>-->
+			<!--<label ><progress value="50" max="100"><span>50</span>%</progress><br><?php echo $orderHelper->statusText()?>-->
 				<?php //echo wp_nonce_field('writing9_nonce', '_wpnonce', true, false);?>
 				<input type="hidden" name="page" value="writing9_order">
 			<?php echo $orderHelper->submitTag($orderHelper->id())?>
