@@ -19,7 +19,7 @@
 		
 		
 		$response->set('order_ids', $order_ids);
-		$orders = $ordersDb->fetchsWithNotOrderByIds($response->get('order_ids'));
+		$orders = $ordersDb->fetchsByIds($response->get('order_ids'));
 		if(empty($orders)){
 			wp_die('オーダーがありません。記事パターンを作成してください');
 		}

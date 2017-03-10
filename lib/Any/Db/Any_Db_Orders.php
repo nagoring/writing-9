@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		$sql = "SELECT * FROM $this->tableName as O WHERE {$where} {$order}";
 		return $this->wpdb->get_results( $this->wpdb->prepare($sql, $params) );
 	}
-	public function fetchsWithNotOrderByIds(array $ids){
+	public function fetchsByIds(array $ids){
 		$where = '';
 		$params = array();
 		foreach($ids as $id){
