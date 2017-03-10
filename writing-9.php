@@ -31,6 +31,8 @@ if ( is_admin()) {
 	include dirname(__FILE__) . '/actions/writing9_input_order.php';
 	//発注するための記事パターンをデータベースに登録
 	include dirname(__FILE__) . '/actions/writing9_add_order.php';
+	//設定ページ
+	include dirname(__FILE__) . '/actions/writing9_setting.php';
 	
 	
 
@@ -43,9 +45,11 @@ if ( is_admin()) {
 		
 		
 		// トップレベルメニュー追加 ( メニューの一番下に追加される )
-		add_menu_page('Writing-9', 'Writing-9', 8, 'writing9_manager', 'func_writing9_order_list');
+		add_menu_page('Writing-9', 'Writing-9', 8, 'writing9_manager', 'writing9_setting');
 		add_submenu_page('writing9_manager', 'Writing-9一覧', '一覧', 8, 'writing9_order_list', 'func_writing9_order_list');
 		add_submenu_page('writing9_manager', 'Writing-9作成', '作成', 8, 'writing9_input_order', 'func_writing9_input_order');
+
+
 		
 		any_hidden_menu_page('writing9_order', 'func_writing9_purchase_order');
 		any_hidden_menu_page('writing9_add_order', '__return_false');
