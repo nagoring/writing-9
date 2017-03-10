@@ -1,5 +1,5 @@
 <?php
-function validate_ordering(){
+function _writing9_validate_ordering(){
 	$error = Any_Core_Error::getInstance();
     if(!isset($_POST['text_type']) || empty($_POST['text_type'])){
 		$error->add("文章タイプを入力してください");
@@ -43,7 +43,7 @@ function writing9_add_order() {
 			$response->set('ng_keyword1', any_safe($_POST, 'ng_keyword1', ''));
 			$response->set('ng_keyword2', any_safe($_POST, 'ng_keyword2', ''));
 			$response->set('reference_url', any_safe($_POST, 'reference_url', ''));
-		    if(validate_ordering()){
+		    if(_writing9_validate_ordering()){
 	Any_Core_Log::write('add_order.txt', 'validate ok');
 				$ordersDb = Any_Db_Orders::getInstance();
 				$ordersDb->saveResponse($response);
