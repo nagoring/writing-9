@@ -22,17 +22,11 @@
 	.tar p{text-align:right !important;margin:0;}
 
 </style>
-<?php 
-$disabled = '';
-$post_action = get_admin_url() . 'admin.php?page=writing9_add_order';
-?>
 <div class="wrap">
 <div id="poststuff">
-    <form method="post" action="<?php echo $post_action?>">
-        <input type="hidden" name="page" value="writing9_manager" >
-        
-    
-    <h1 class="wp-heading-inline">記事パターン追加</h1>
+    <form method="post">
+
+    <h1 class="wp-heading-inline">Writing-9 設定画面</h1>
     <hr class="wp-header-end">
     <hr >
 	
@@ -52,51 +46,13 @@ $post_action = get_admin_url() . 'admin.php?page=writing9_add_order';
 <div id="post-body-content" style="position: relative;"> 
 
 		<div id="postbox-container-2" class="postbox-container ">
-			<div id="titlediv">
-				<div id="titlewrap">
-					<label class="" id="title-prompt-text" for="title">ここに記事パターンのタイトルを入力</label>
-					<input type="text" id="title" name="title" <?php echo $disabled?>><?php echo $response->get('title')?></input>
-				</div>
-				<div class="inside">　</div>
-			</div>
-			<div id="pageparentdiv" class="postbox ">
-				<button type="button" class="handlediv button-link" aria-expanded="true"><span class="screen-reader-text">パネルを閉じる: 公開</span><span class="toggle-indicator" aria-hidden="true"></span></button>
-				<h2 class="hndle ui-sortable-handle">文章タイプ<small>（説明文、体験談、雑学・お役立ち、紹介文など）</small></h2>
-				<div class="inside">
-					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">文章タイプ・用途<span class="w9-require">必須</span></label></p>
-					<textarea class="w9-textarea" id="text_type" name="text_type" aria-required="true" required="required"<?php echo $disabled?>><?php echo $response->get('text_type')?></textarea>
-					<p>説明文、体験談、雑学・お役立ち、紹介文など、どんな文章にしたいのか記入してください。</p>
-					
-					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">文末表現</label></p>
-					<?php echo any_select('end_of_sentence', $form->get('end_of_sentence'), $response->get('end_of_sentence'), [
-					'aria-required' => true,
-					'id' => 'end_of_sentence',
-					$disabled => $disabled,
-					]);?>
-					
-					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">テイスト</label></p>	
-					<?php echo any_select('text_taste', $form->get('text_taste'), $response->get('text_taste'), [
-					'id' => 'text_taste',
-					$disabled => $disabled,
-					]);?>
-					
-					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">記事ジャンル</label></p>	
-					<?php echo any_select('genre', $form->get('genre'), $response->get('genre'), [
-					'id' => 'genre',
-					$disabled => $disabled,
-					]);?>
-					
-					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">参考URL</label></p>	
-					<input type="text" id="reference_url" name="reference_url" value="<?php echo $response->get('reference_url')?>" <?php echo $disabled?>></input>
-				</div>
-			</div>
-		
+
 			<div id="pageparentdiv" class="postbox ">
 				<button type="button" class="handlediv button-link" aria-expanded="true"><span class="screen-reader-text">パネルを閉じる: 公開</span><span class="toggle-indicator" aria-hidden="true"></span></button>
 				<h2 class="hndle ui-sortable-handle">キーワード設定</h2>
 				<div class="inside">
-					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">メインワード</label><span class="w9-require">必須</span></p>
-					<input type="text" id="main_word" name="main_word" required="required" value="<?php echo $response->get('main_word')?>" <?php echo $disabled?>></input>
+					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">送信/受信に使用するメールアドレス</label><span class="w9-require">必須</span></p>
+					<input type="text" id="main_word" name="main_word" required="required" value="<?php echo $response->get('Any_Writing9_email')?>" <?php echo $disabled?>></input>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">キーワード</label></p>
 					<input type="text" id="keyword1" name="keyword1" value="<?php echo $response->get('keyword1')?>" <?php echo $disabled?>></input>
 					<input type="text" id="keyword2" name="keyword2" value="<?php echo $response->get('keyword2')?>" <?php echo $disabled?>></input>
@@ -108,8 +64,6 @@ $post_action = get_admin_url() . 'admin.php?page=writing9_add_order';
 					<input type="text" id="ng_keyword2" name="ng_keyword2" value="<?php echo $response->get('ng_keyword2')?>" <?php echo $disabled?>></input>
 				</div>
 			</div>
-			
-			
 		</div>
 
 
