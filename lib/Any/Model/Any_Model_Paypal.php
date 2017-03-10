@@ -36,20 +36,20 @@ Any_Core_Log::write('paypal', 'updateStatusByOrderIds:' . 'error');
 			return false;
 		}
 		$order_id = $ordersDb->getLastInsertId();
-		$result = $receiptsDb->insert([
+		$result = $receiptsDb->insert(array(
 			'mc_gross' => $this->post['mc_gross'],
 			'txn_id' => $this->post['txn_id'],
 			'post_json' => json_encode($this->post),
-		]);
+		));
 		if(!$result){
 Any_Core_Log::write('paypal', 'receiptsDb:' . 'error');
 			return false;
 		}
 		$receipt_id = $receiptsDb->getLastInsertId();
-		$result = $receiptRelationsDb->insert([
+		$result = $receiptRelationsDb->insert(array(
 			'order_id' => $order_id,
 			'receipt_id' => $receipt_id,
-		]);
+		));
 		if(!$result){
 Any_Core_Log::write('paypal', 'receiptRelationsDb:' . 'error');
 			return false;

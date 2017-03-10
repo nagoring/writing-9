@@ -11,7 +11,7 @@
  *
  * @package         Writing_9
  */
-include_once __DIR__ . '/lib/writing9_common.php';
+include_once dirname(__FILE__) . '/lib/writing9_common.php';
 
 if ( is_admin()) {
 	//Activateしたときの実行処理
@@ -24,13 +24,13 @@ if ( is_admin()) {
 		}
 	}
 	//発注するための決済ページ
-	include __DIR__ . '/actions/writing9_purchase_order.php';	
+	include dirname(__FILE__) . '/actions/writing9_purchase_order.php';	
 	//記事パターン一覧
-	include __DIR__ . '/actions/writing9_order_list.php';
+	include dirname(__FILE__) . '/actions/writing9_order_list.php';
 	//発注するための記事パターンの作成
-	include __DIR__ . '/actions/writing9_input_order.php';
+	include dirname(__FILE__) . '/actions/writing9_input_order.php';
 	//発注するための記事パターンをデータベースに登録
-	include __DIR__ . '/actions/writing9_add_order.php';
+	include dirname(__FILE__) . '/actions/writing9_add_order.php';
 	
 	
 
