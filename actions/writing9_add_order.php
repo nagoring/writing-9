@@ -18,7 +18,7 @@ function validate_ordering(){
 
 function writing9_add_order() {
 	if ( isset($_GET['page']) && $_GET['page'] == 'writing9_add_order' ) {
-	    if(isset($_POST['original_publish']) && strlen($_POST['original_publish']) > 0){
+	    if(isset($_POST['original_publish']) && strlen($_POST['original_publish']) > 0 && check_admin_referer('writing9_input_order', '_writing9_nonce')){
 			$response = Any_Core_Response::getInstance();
 			$response->set('text_type', any_safe($_POST, 'text_type', ''));
 			$response->set('end_of_sentence', any_safe($_POST, 'end_of_sentence', ''));

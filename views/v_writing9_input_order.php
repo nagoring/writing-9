@@ -31,7 +31,7 @@ $post_action = get_admin_url() . 'admin.php?page=writing9_add_order';
 <div id="poststuff">
     <form method="post" action="<?php echo $post_action?>">
         <input type="hidden" name="page" value="writing9_manager" >
-        
+	<?php wp_nonce_field('writing9_input_order', '_writing9_nonce')?>        
     
     <h1 class="wp-heading-inline">記事パターン追加</h1>
     <hr class="wp-header-end">
