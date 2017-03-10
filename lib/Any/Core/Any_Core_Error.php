@@ -22,7 +22,7 @@ class Any_Core_Error{
         $_SESSION['any']['error'] = $message;
     }
     public function clear(){
-        
+        unset($_SESSION['any']['error']);
     }
     public function isNotError(){
         return $this->length() == 0;
