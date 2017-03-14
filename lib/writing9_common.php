@@ -94,5 +94,5 @@ function any_writing9_set_setting_and_get(){
 	return $option;
 }
 function any_writing9_check_for_authority(){
-	return current_user_can('administrator')
+	return current_user_can('administrator');
 }
