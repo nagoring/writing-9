@@ -50,6 +50,12 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		";
 		return $wpdb->query($sql);
 	}
+	public static function deleteTable(){
+		global $wpdb;
+		$table = $wpdb->prefix . 'w9_orders';
+		$sql = "DROP TABLE {$table};";
+		return $wpdb->query($sql);
+	}
 	public function saveResponse($response){
 		$save = array();
 		$save['text_type'] = $response->get('text_type');

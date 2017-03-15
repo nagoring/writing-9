@@ -18,11 +18,17 @@ if ( is_admin()) {
 	register_activation_hook(__FILE__, 'activation_wrting9_plugin');
 	function activation_wrting9_plugin() {
 		Any_Db_Orders::createTable();
-		$writing9_private_key = get_option('writing9_private_key', false);
-		if(strlen($writing9_private_key) <= 0){
-			update_option('writing9_private_key', md5(uniqid(rand(),1) . site_url()));
-		}
+		any_writing9_set_setting_and_get();
 	}
+	
+	register_uninstall_hook( __FILE__, 'any_writing9_uninstall_hook' );
+	function any_writing9_uninstall_hook() {
+		delete_option( 'Any_Writing9' );
+		Any_Db_Orders::deleteTable();
+		Any_Db_ReceiptRelations::deleteTable();
+		Any_Db_Receipts::deleteTable();
+	}
+	
 	//発注するための決済ページ
 	include dirname(__FILE__) . '/actions/writing9_purchase_order.php';	
 	//記事パターン一覧

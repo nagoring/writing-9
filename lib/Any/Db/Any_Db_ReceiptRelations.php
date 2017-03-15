@@ -26,6 +26,12 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		";
 		return $wpdb->query($sql);
 	}
+	public static function deleteTable(){
+		global $wpdb;
+		$table = $wpdb->prefix . 'w9_receipt_relations';
+		$sql = "DROP TABLE {$table};";
+		return $wpdb->query($sql);
+	}
 	
 }
 
