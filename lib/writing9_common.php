@@ -76,16 +76,22 @@ function any_hidden_menu_page($slug, $function){
 	$_registered_pages[$hookname] = true;
 }
 function any_writing9_private_key(){
-	return get_option('writing9_private_key', '');
+	$option = get_option('Any_Writing9', false);
+	if($option === false)return '';
+	return $option['private_key'];
 }
 function any_writing9_set_setting_and_get(){
 	$option = get_option('Any_Writing9', array());
+	if(!isset($option['private_key']) || $option['private_key'] === ''){
+		$option['private_key'] = md5(uniqid(rand(),1) . site_url());
+	}
 	if(!isset($option['email']) || $option['email'] === ''){
 		$option['email'] = get_option('admin_email');
 	}
 	if(!isset($option['ipn']) || $option['ipn'] === ''){
 		$option['ipn'] = wp_hash(rand(0, 9999), 'writing9');
 	}
+	
 	update_option('Any_Writing9', $option, 'no');
 	$option = get_option('Any_Writing9', false);
 	if($option === false){
