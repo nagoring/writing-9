@@ -16,6 +16,13 @@ function _writing9_validate_ordering(){
     return $error->isNotError();
 }
 
+add_action('phpmailer_init', 'add_mail_sender');
+function add_mail_sender($phpmailer){
+	$phpmailer->Sender = 'nagoling@gmail.com';
+	
+	return $phpmailer;
+}
+
 function writing9_add_order() {
 	if(!any_writing9_check_for_authority())wp_die('Access Error');
 	if ( isset($_GET['page']) && $_GET['page'] == 'writing9_add_order' ) {

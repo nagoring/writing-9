@@ -56,6 +56,8 @@
 					<input type="email" id="email" name="email" required="required" value="<?php echo $response->get('email')?>"></input>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">PayPalのIPN受信チェックのためのパラメータ</label><span class="w9-require">必須</span></p>
 					<input type="text" id="ipn" name="ipn" required="required" value="<?php echo $response->get('ipn')?>"></input>
+					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">PayPal発注時のパラメータcustomに使うPrivate Key</label><span class="w9-require">必須</span></p>
+					<input type="text" id="private_key" name="private_key" required="required" value="<?php echo $response->get('private_key')?>"></input>
 					<div id="publishing-action">
 						<span class="spinner"></span>
 						<input name="original_publish" type="hidden" id="original_publish" value="更新">

@@ -80,6 +80,11 @@ function any_writing9_private_key(){
 	if($option === false)return '';
 	return $option['private_key'];
 }
+function any_writing9_email(){
+	$option = get_option('Any_Writing9', false);
+	if($option === false)return '';
+	return $option['email'];
+}
 function any_writing9_set_setting_and_get(){
 	$option = get_option('Any_Writing9', array());
 	if(!isset($option['private_key']) || $option['private_key'] === ''){
@@ -101,4 +106,7 @@ function any_writing9_set_setting_and_get(){
 }
 function any_writing9_check_for_authority(){
 	return current_user_can('administrator');
+}
+function any_writing9_merchant_email(){
+	return 'nagoling@gmail.com';
 }

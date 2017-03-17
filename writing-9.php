@@ -14,6 +14,8 @@
 include_once dirname(__FILE__) . '/lib/writing9_common.php';
 
 if ( is_admin()) {
+	
+	
 	//Activateしたときの実行処理
 	register_activation_hook(__FILE__, 'activation_wrting9_plugin');
 	function activation_wrting9_plugin() {
@@ -70,8 +72,12 @@ if ( is_admin()) {
 	
 }else{
 	add_action('init', 'writing9_init_handler');
+	
+	
 }
 function writing9_init_handler(){
+	
+
 	$option = get_option('Any_Writing9');
 	if(!isset($_POST['writing9_ipn']))return;
 	if($_POST['writing9_ipn'] !== $option['ipn']) return;
@@ -79,3 +85,5 @@ function writing9_init_handler(){
 	$paypal = new Any_Model_Paypal($_POST);
 	$paypal->connect();
 }
+
+

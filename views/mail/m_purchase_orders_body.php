@@ -1,3 +1,12 @@
+メールアドレス
+<?php echo $from_email?>
 
-<?=$order_body?>
+
+URL
+<?php echo $url?>
+
+
+---------------------------
+
+<?php echo $order_body?>
 

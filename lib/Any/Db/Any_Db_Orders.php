@@ -134,4 +134,11 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		$sql = "UPDATE {$this->tableName} as O SET `status`=%d WHERE {$where}";
 		return $this->wpdb->get_results( $this->wpdb->prepare($sql, $params) );
 	}
+	public function updateByOrderId($order_id, $status){
+		$params = array();
+		$params[] = $status;
+		$params[] = $order_id;
+		$sql = "UPDATE {$this->tableName} as O SET `status`=%d WHERE O.id = %d";
+		return $this->wpdb->get_results( $this->wpdb->prepare($sql, $params) );
+	}
 }

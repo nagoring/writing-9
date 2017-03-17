@@ -16,6 +16,8 @@ function writing9_setting() {
 			$save = array();
 			$save['email'] = $response->get('email');
 			$save['ipn'] = $response->get('ipn');
+			$save['private_key'] = $response->get('private_key');
+			
 			update_option('Any_Writing9', $save, 'no');
 			$option = get_option('Any_Writing9', false);
 			$error->clear();
@@ -24,6 +26,7 @@ function writing9_setting() {
 	
 	$response->set('email', $option['email']);
 	$response->set('ipn', $option['ipn']);
+	$response->set('private_key', $option['private_key']);
 	// $response->set('order_id', null);
     $view->render('views/v_writing9_setting.php', array(
 		'form' => $form,
