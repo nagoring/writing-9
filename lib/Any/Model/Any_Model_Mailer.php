@@ -16,13 +16,15 @@ class Any_Model_Mailer{
 		foreach($orders as $order){
 			$order_body .= $this->_createMailBodyParameter($order);
 		}
-		
+		return $order_body;
 	}
 	function _createMailBodyParameter($order){
 		$orderHelper = Any_Helper_Order::getInstance();
 		$orderHelper->init($order);
 		$view = Any_Core_View::getInstance();
-		return $view->load('m/m_purchase_order');
+		return $view->load('views/mail/m_purchase_order.php', array(
+			'orderHelper' => $orderHelper
+		));
 	}
 
 }

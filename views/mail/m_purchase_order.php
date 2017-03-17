@@ -1,90 +1,89 @@
 ここに記事パターンのタイトル
-<?= $orderHelper->title()?>
+<?php echo $orderHelper->title()?>
 
 
 文章タイプ・用途
-<?= $orderHelper->textType()?>
+<?php echo $orderHelper->text_type()?>
 
 
 文末表現
-<?= $orderHelper->endOfSentenceText()?>
+<?php echo $orderHelper->endOfSentenceText()?>
 
 
 テイスト
-<?= $orderHelper->textTasteText()?>
+<?php echo $orderHelper->textTasteText()?>
 
 
 ジャンル
-<?= $orderHelper->genreText()?>
+<?php echo $orderHelper->genreText()?>
 
 
 参考URL
-<?= $orderHelper->reference_url()?>
+<?php echo $orderHelper->reference_url()?>
 
 
 メインワード
-<?= $orderHelper->main_word()?>
+<?php echo $orderHelper->main_word()?>
 
 
 キーワード1
-<?= $orderHelper->keyword1()?>
+<?php echo $orderHelper->keyword1()?>
 
 
 キーワード2
-<?= $orderHelper->keyword2()?>
+<?php echo $orderHelper->keyword2()?>
 
 
 キーワード3
-<?= $orderHelper->keyword3()?>
+<?php echo $orderHelper->keyword3()?>
 
 
 キーワード4
-<?= $orderHelper->keyword4()?>
+<?php echo $orderHelper->keyword4()?>
 
 
 キーワード5
-<?= $orderHelper->keyword5()?>
+<?php echo $orderHelper->keyword5()?>
 
 
 NGワード1
-<?= $orderHelper->ngword1()?>
+<?php echo $orderHelper->ngword1()?>
 
 
 NGワード2
-<?= $orderHelper->ngword2()?>
+<?php echo $orderHelper->ngword2()?>
 
 
 記事数
-<?= $orderHelper->number_articles()?>
+<?php echo $orderHelper->number_articles()?>
 
 
 文字数
-<?= $orderHelper->word_count()?>
+<?php echo $orderHelper->word_count()?>
 
 
 目視チェック
-<?= $orderHelper->visualCheckText()?>
+<?php echo $orderHelper->visualCheckText()?>
 
 
 プロライターの起用
-<?= $orderHelper->useProWriterText()?>
+<?php echo $orderHelper->useProWriterText()?>
 
 
 特記事項
-<?= $orderHelper->note()?>
+<?php echo $orderHelper->note()?>
 
 
 タイトル作成
-<?= $orderHelper->titleCreationText()?>
+<?php echo $orderHelper->titleCreationText()?>
 
 
 フォーマット設定
-<?= $orderHelper->formatSettingText()?>
+<?php echo $orderHelper->formatSettingText()?>
 
 
 フォーマットご要望
-<?= $orderHelper->format_setting_note()?>
+<?php echo $orderHelper->format_setting_note()?>
 
 
-
-
+==========

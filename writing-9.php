@@ -68,22 +68,13 @@ if ( is_admin()) {
 	
 	add_action('admin_init', 'writing9_add_order', 1);
 	
-	// add_action('admin_menu', 'writing9_order');
-	
-	// function writing9_order() {
-	//   add_options_page('注文画面', '注文画面', 8, 'writing9_order', 'func_writing9_order_page');
-	//   $hookname = get_plugin_page_hookname( 'banner_menu', 'banner_options_page');
-	//   //var_dump($hookname);
-	//   //echo "bbbbbbbbbbbbb<br>";
-	//   //exit;
-	//   //add_action( 'admin_init', 'register_banner_settings' );
-	// }	
 }else{
 	add_action('init', 'writing9_init_handler');
 }
 function writing9_init_handler(){
 	$option = get_option('Any_Writing9');
-	if(!isset($_POST['writing9_ipn']) && $_POST['writing9_ipn'] !== $option['ipn']) return;
+	if(!isset($_POST['writing9_ipn']))return;
+	if($_POST['writing9_ipn'] !== $option['ipn']) return;
 
 	$paypal = new Any_Model_Paypal($_POST);
 	$paypal->connect();

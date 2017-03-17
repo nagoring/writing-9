@@ -1,5 +1,6 @@
 <?php
 include_once dirname(__FILE__) . '/../lib/writing9_common.php';
+define('ANY_WRITING9_TEST_PATH', dirname(__FILE__));
 /**
  * PHPUnit bootstrap file
  *
