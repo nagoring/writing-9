@@ -69,19 +69,23 @@ if ( is_admin()) {
 	}
 	
 	add_action('admin_init', 'writing9_add_order', 1);
-	
 }else{
 	add_action('init', 'writing9_init_handler');
 	
 	
 }
 function writing9_init_handler(){
+	Any_Core_Log::write('paypal_ipn', 'called writing9_init_handler:' . 'notify');
 	
 
 	$any_writing9_ipn = any_writing9_ipn();
-	if(!isset($_POST['writing9_ipn']))return;
-	if($_POST['writing9_ipn'] !== $any_writing9_ipn) return;
+	Any_Core_Log::write('paypal_ipn', 'any_writing9_ipn:' . $any_writing9_ipn);
+	Any_Core_Log::write('paypal_ipn', '$_GET[writing9_ipn]:' . var_export($_GET, true));
+	Any_Core_Log::write('paypal_ipn', '$_GET[writing9_ipn]:' . $_GET['writing9_ipn']);
+	if(!isset($_GET['writing9_ipn']))return;
+	if($_GET['writing9_ipn'] !== $any_writing9_ipn) return;
 
+	Any_Core_Log::write('paypal_ipn', 'new Any_Model_Paypal :' . 'notify');
 	$paypal = new Any_Model_Paypal($_POST);
 	$paypal->connect();
 }

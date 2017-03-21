@@ -41,6 +41,7 @@ class Any_Model_Paypal{
         return false;
 	}
 	function _verifiedAfter(){
+		Any_Core_Log::write('paypal', 'call _verifiedAfter:' . 'error');
 		$ordersDb = Any_Db_Orders::getInstance();
 		$receiptsDb = Any_Db_Receipts::getInstance();
 		$receiptRelationsDb = Any_Db_ReceiptRelations::getInstance();
@@ -66,12 +67,13 @@ class Any_Model_Paypal{
 		$this->any_writing9_update_order_ids_logic($orderIdsArray, $receipt_id);
 		$orders = $ordersDb->fetchsByIds($orderIdsArray);
 		
+		Any_Core_Log::write('paypal', 'before new Any_Model_Mailer:' . 'error');
 		$mailer = new Any_Model_Mailer(array(
 			'orders' => $orders,
 			'from_email' => any_writing9_email(),
 			'url' => home_url(),
 		));
-		
+		$mailer->send();
 // 		$result = $ordersDb->updateStatusByOrderIds($orderIdsArray, Any_Definition_EStatus::$CREATING_ARTICLES);
 // 		if(!$result){
 // Any_Core_Log::write('paypal', 'updateStatusByOrderIds:' . 'error');
