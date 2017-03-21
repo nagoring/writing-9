@@ -81,9 +81,6 @@ function writing9_init_handler(){
 	
 
 	$any_writing9_ipn = any_writing9_ipn();
-	Any_Core_Log::write('paypal_ipn', 'any_writing9_ipn:' . $any_writing9_ipn);
-	Any_Core_Log::write('paypal_ipn', '$_GET[writing9_ipn]:' . var_export($_GET, true));
-	Any_Core_Log::write('paypal_ipn', '$_GET[writing9_ipn]:' . $_GET['writing9_ipn']);
 	if(!isset($_GET['writing9_ipn']))return;
 	if($_GET['writing9_ipn'] !== $any_writing9_ipn) return;
 
@@ -91,5 +88,6 @@ function writing9_init_handler(){
 	$paypal = new Any_Model_Paypal($_POST);
 	$paypal->connect();
 }
+
 
 

@@ -17,7 +17,7 @@ class Any_Db_Receipts extends Any_Db_Db{
 		$table = $wpdb->prefix . 'w9_receipts';
 		$sql = "
 CREATE TABLE IF NOT EXISTS `{$table}` (
-  `id` int(10) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `mc_gross` int(10) unsigned NOT NULL,
   `txn_id` varchar(255) NOT NULL,
   `post_json` text NOT NULL,
