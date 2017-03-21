@@ -61,8 +61,8 @@ if ( is_admin()) {
 		
 		any_hidden_menu_page('writing9_order', 'func_writing9_purchase_order');
 		any_hidden_menu_page('writing9_add_order', '__return_false');
+
 		// add_submenu_page('writing9_manager', null, null, 0, 'writing9_order', 'func_writing9_purchase_order');
-		
 		
 		// add_options_page('writing9_manager', null, 8, 'writing9_order', 'func_writing9_purchase_order');
 		// add_options_page('_writing9_add_order', '_writing9_add_order', 8, 'writing9_add_order', '__return_false', null, 0);
@@ -78,9 +78,9 @@ if ( is_admin()) {
 function writing9_init_handler(){
 	
 
-	$option = get_option('Any_Writing9');
+	$any_writing9_ipn = any_writing9_ipn();
 	if(!isset($_POST['writing9_ipn']))return;
-	if($_POST['writing9_ipn'] !== $option['ipn']) return;
+	if($_POST['writing9_ipn'] !== $any_writing9_ipn) return;
 
 	$paypal = new Any_Model_Paypal($_POST);
 	$paypal->connect();

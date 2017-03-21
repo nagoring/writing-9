@@ -85,6 +85,12 @@ function any_writing9_email(){
 	if($option === false)return '';
 	return $option['email'];
 }
+function any_writing9_ipn(){
+	$option = get_option('Any_Writing9', false);
+	if($option === false)return '';
+	return $option['writing9_ipn'];
+}
+
 function any_writing9_set_setting_and_get(){
 	$option = get_option('Any_Writing9', array());
 	if(!isset($option['private_key']) || $option['private_key'] === ''){

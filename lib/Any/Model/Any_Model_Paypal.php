@@ -63,7 +63,7 @@ class Any_Model_Paypal{
 		$receipt_id = $receiptsDb->getLastInsertId();
 		$orderIdsArray = explode(',', $order_ids_str);
 		
-		any_writing9_update_order_ids_logic($orderIdsArray, $receipt_id);
+		$this->any_writing9_update_order_ids_logic($orderIdsArray, $receipt_id);
 		$orders = $ordersDb->fetchsByIds($orderIdsArray);
 		
 		$mailer = new Any_Model_Mailer(array(
