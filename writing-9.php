@@ -20,6 +20,8 @@ if ( is_admin()) {
 	register_activation_hook(__FILE__, 'activation_wrting9_plugin');
 	function activation_wrting9_plugin() {
 		Any_Db_Orders::createTable();
+		Any_Db_ReceiptRelations::createTable();
+		Any_Db_Receipts::createTable();
 		any_writing9_set_setting_and_get();
 	}
 	

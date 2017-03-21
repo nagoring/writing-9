@@ -1,8 +1,8 @@
-メールアドレス
+-メールアドレス
 <?php echo $from_email?>
 
 
-URL
+-URL
 <?php echo $url?>
 
 

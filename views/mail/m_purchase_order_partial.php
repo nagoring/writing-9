@@ -1,88 +1,88 @@
-ここに記事パターンのタイトル
+-ここに記事パターンのタイトル
 <?php echo $orderHelper->title()?>
 
 
-文章タイプ・用途
+-文章タイプ・用途
 <?php echo $orderHelper->text_type()?>
 
 
-文末表現
+-文末表現
 <?php echo $orderHelper->endOfSentenceText()?>
 
 
-テイスト
+-テイスト
 <?php echo $orderHelper->textTasteText()?>
 
 
-ジャンル
+-ジャンル
 <?php echo $orderHelper->genreText()?>
 
 
-参考URL
+-参考URL
 <?php echo $orderHelper->reference_url()?>
 
 
-メインワード
+-メインワード
 <?php echo $orderHelper->main_word()?>
 
 
-キーワード1
+-キーワード1
 <?php echo $orderHelper->keyword1()?>
 
 
-キーワード2
+-キーワード2
 <?php echo $orderHelper->keyword2()?>
 
 
-キーワード3
+-キーワード3
 <?php echo $orderHelper->keyword3()?>
 
 
-キーワード4
+-キーワード4
 <?php echo $orderHelper->keyword4()?>
 
 
-キーワード5
+-キーワード5
 <?php echo $orderHelper->keyword5()?>
 
 
-NGワード1
+-NGワード1
 <?php echo $orderHelper->ngword1()?>
 
 
-NGワード2
+-NGワード2
 <?php echo $orderHelper->ngword2()?>
 
 
-記事数
+-記事数
 <?php echo $orderHelper->number_articles()?>
 
 
-文字数
+-文字数
 <?php echo $orderHelper->word_count()?>
 
 
-目視チェック
+-目視チェック
 <?php echo $orderHelper->visualCheckText()?>
 
 
-プロライターの起用
+-プロライターの起用
 <?php echo $orderHelper->useProWriterText()?>
 
 
-特記事項
+-特記事項
 <?php echo $orderHelper->note()?>
 
 
-タイトル作成
+-タイトル作成
 <?php echo $orderHelper->titleCreationText()?>
 
 
-フォーマット設定
+-フォーマット設定
 <?php echo $orderHelper->formatSettingText()?>
 
 
-フォーマットご要望
+-フォーマットご要望
 <?php echo $orderHelper->format_setting_note()?>
 
 

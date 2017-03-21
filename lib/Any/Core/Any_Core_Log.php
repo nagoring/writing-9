@@ -7,7 +7,5 @@ class Any_Core_Log{
 		$fp = fopen($filepath, 'a');
 		fputs($fp, $date . ':' . $msg . PHP_EOL);
 		fclose($fp);
-		echo $filepath;
-		echo "<br>";
 	}
 }
