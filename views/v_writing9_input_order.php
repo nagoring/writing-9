@@ -23,9 +23,10 @@
 
 </style>
 <?php 
-// $disabled = 'disabled';
 $disabled = '';
-$post_action = get_admin_url() . 'admin.php?page=writing9_add_order';
+if($order->status != Any_Definition_EStatus::$NOT_PAYMENT){
+	$disabled = 'disabled';
+}
 ?>
 <div class="wrap">
 <div id="poststuff">
@@ -33,7 +34,7 @@ $post_action = get_admin_url() . 'admin.php?page=writing9_add_order';
         <input type="hidden" name="page" value="writing9_manager" >
 	<?php wp_nonce_field('writing9_input_order', '_writing9_nonce')?>        
     
-    <h1 class="wp-heading-inline">記事パターン追加</h1>
+    <h1 class="wp-heading-inline"><?php echo $heading_inline?></h1>
     <hr class="wp-header-end">
     <hr >
 	
@@ -134,7 +135,7 @@ $post_action = get_admin_url() . 'admin.php?page=writing9_add_order';
 					
 				<span class="spinner"></span>
 						<input name="original_publish" type="hidden" id="original_publish" value="<?php echo $submit_text?>">
-						<input name="save" type="submit" class="button button-primary button-large" id="publish" value="<?php echo $submit_text?>">
+						<input name="save" type="submit" class="button button-primary button-large" id="publish" value="<?php echo $submit_text?>" <?php echo $disabled?>>
 				</div>
 				<div class="clear"></div>
 				</div>
@@ -200,83 +201,92 @@ $post_action = get_admin_url() . 'admin.php?page=writing9_add_order';
 </div><!--.wrap-->
 
 <script>
-(function($){
-	'use strict'
-	var app = {};
-	app.price_total = 0;
-	app.number_articles = 0;
-	app.word_count = 0;
-	app.DEFAULT_UNIT_PRICE = 1;
-	app.use_pro_write_unit_price = 0;
-	app.visual_check_unit_price = 0;
-	app.title_creation_unit_price = 0;
-	app.format_setting_unit_price = 0;
-	
-	var $number_articles = $("#number_articles");
-	var $word_count = $("#word_count");
-	var $use_pro_writer = $("#use_pro_writer");
-	var $visual_check = $("#visual_check");
-	var $title_creation = $("#title_creation");
-	var $format_setting = $("#format_setting");
-	
-	
-	$number_articles.on('change', function(){
-		app.number_articles = $(this).val();
-		update_and_calc();
-	});
-	$word_count.on('change', function(){
-		app.word_count = $(this).val();
-		update_and_calc();
-	});
-	$use_pro_writer.on('change', function(){
-		var use_pro_write = $(this).val();
-		if($(this).val() == 1){
-			//プロライターを使用する場合
-			app.use_pro_write_unit_price = 5;
-		}else{
-			app.use_pro_write_unit_price = 0;
-		}
-		update_and_calc();
-	});
-	$visual_check.on('change', function(){
-		if($(this).val() == 1){
-			app.visual_check_unit_price = 0.5;
-		}else{
-			app.visual_check_unit_price = 0;
-		}
-		update_and_calc();
-	});
-	
-	$title_creation.on('change', function(){
-		if($(this).val() == 1){
-			app.title_creation_unit_price = 0.5;
-		}else{
-			app.title_creation_unit_price = 0;
-		}
-		update_and_calc();
-	});
-	
-	$format_setting.on('change', function(){
-		if($(this).val() != 0){
-			app.format_setting_unit_price = 0.5;
-		}else{
-			app.format_setting_unit_price = 0;
-		}
-		update_and_calc();
-	});
-	
-	
-	function update_and_calc(){
-		var unit_price = app.DEFAULT_UNIT_PRICE
-		+ app.visual_check_unit_price
-		+ app.use_pro_write_unit_price
-		+ app.title_creation_unit_price
-		+ app.format_setting_unit_price
-		;
-		app.price_total =  app.number_articles * app.word_count * unit_price;
-		$("#price_total").text('合計 ' + app.price_total + '円');
-	}
-}(jQuery));
+	(function($){
+		'use strict'
+		var app = {};
+		app.price_total = 0;
+		app.number_articles = 0;
+		app.word_count = 0;
+		app.DEFAULT_UNIT_PRICE = 1;
+		app.use_pro_write_unit_price = 0;
+		app.visual_check_unit_price = 0;
+		app.title_creation_unit_price = 0;
+		app.format_setting_unit_price = 0;
 
+		var $number_articles = $("#number_articles");
+		var $word_count = $("#word_count");
+		var $use_pro_writer = $("#use_pro_writer");
+		var $visual_check = $("#visual_check");
+		var $title_creation = $("#title_creation");
+		var $format_setting = $("#format_setting");
+
+		app.number_articles = $number_articles.val();
+		app.word_count = $word_count.val();
+		use_pro_writer();
+		calc_visual_check();
+		calc_title_creation();
+		calc_format_setting();
+
+		$number_articles.on('change', function(){
+			app.number_articles = $(this).val();
+			update_and_calc();
+		});
+		$word_count.on('change', function(){
+			app.word_count = $(this).val();
+			update_and_calc();
+		});
+		
+		$use_pro_writer.on('change', use_pro_writer);
+		function use_pro_writer(){
+			if($use_pro_writer.val() == 1){
+				//プロライターを使用する場合
+				app.use_pro_write_unit_price = 5;
+			}else{
+				app.use_pro_write_unit_price = 0;
+			}
+			update_and_calc();
+		}
+		$visual_check.on('change', calc_visual_check);
+		function calc_visual_check(){
+			if($visual_check.val() == 1){
+				app.visual_check_unit_price = 0.5;
+			}else{
+				app.visual_check_unit_price = 0;
+			}
+			update_and_calc();
+		}
+		$title_creation.on('change', calc_title_creation);
+		function calc_title_creation(){
+			if($title_creation.val() == 1){
+				app.title_creation_unit_price = 0.5;
+			}else{
+				app.title_creation_unit_price = 0;
+			}
+			update_and_calc();
+		}
+		$format_setting.on('change', calc_format_setting);
+		function calc_format_setting(){
+			if($format_setting.val() != 0){
+				app.format_setting_unit_price = 0.5;
+			}else{
+				app.format_setting_unit_price = 0;
+			}
+			update_and_calc();
+		}
+
+		function update_and_calc(){
+			console.log("update_and_calc");
+			var unit_price = app.DEFAULT_UNIT_PRICE
+			+ app.visual_check_unit_price
+			+ app.use_pro_write_unit_price
+			+ app.title_creation_unit_price
+			+ app.format_setting_unit_price
+			;
+			app.price_total =  app.number_articles * app.word_count * unit_price;
+			console.log("visual_check_unit_price:" + app.visual_check_unit_price);
+			console.log(app.number_articles + "+" + app.word_count +  "+" + unit_price + "=" + app.price_total);
+			$("#price_total").text('合計 ' + app.price_total + '円');
+		}
+	}(jQuery));
 	
 </script>

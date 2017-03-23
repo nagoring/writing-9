@@ -8,7 +8,7 @@ $orderHelper = Any_Helper_Order::getInstance();
         
     
     <h1 class="wp-heading-inline">記事パターン一覧</h1>
-    <a href="admin.php?page=writing9_manager" class="page-title-action">新規追加</a>
+    <a href="admin.php?page=writing9_input_order" class="page-title-action">新規追加</a>
     <hr class="wp-header-end">
 		<hr >
 
@@ -75,7 +75,7 @@ $orderHelper = Any_Helper_Order::getInstance();
 			<span class="locked-text"></span></div>
 		<strong><a class="row-title" href="#" aria-label="<?php echo $orderHelper->listTitle()?>の詳細"><?php echo $orderHelper->listTitle()?></a></strong>
 	<div class="row-actions">
-		<span class="edit"><a href="#" aria-label="<?php echo $orderHelper->listTitle()?>の詳細">詳細</a></span>
+		<span class="edit"><a href="?page=writing9_edit_order&order_id=<?php echo $orderHelper->id()?>" aria-label="<?php echo $orderHelper->listTitle()?>の詳細">詳細</a></span>
 	</div>
 		</td>
 		<td class="author column-author"><?php echo $orderHelper->number_articles()?><small>記事</small></td>

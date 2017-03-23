@@ -3,7 +3,12 @@ class Any_Db_Orders extends Any_Db_Db{
 	protected function __construct() {
 		parent::__construct("w9_orders");
 	}
-    public function getInstance(){
+	/**
+	 * 
+	 * @staticvar type $instance
+	 * @return \self
+	 */
+    public static function getInstance(){
         static $instance = null;
         if($instance === null){
             $instance = new self();
@@ -58,6 +63,16 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		return $wpdb->query($sql);
 	}
 	public function saveResponse($response){
+		$save = $this->createSave($response);
+		return $this->insert($save);
+    }
+	public function updateResponse($response, $order_id){
+		$save = $this->createSave($response);
+		return $this->update($save, array(
+			'id' => $order_id
+		));
+	}
+	private function createSave($response){
 		$save = array();
 		$save['text_type'] = $response->get('text_type');
 		$save['end_of_sentence'] = (int)$response->get('end_of_sentence');
@@ -100,13 +115,17 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		}
 		$save['unit_price'] = $unit_price;
 		$save['total_price'] = $save['number_articles'] * $save['word_count'] * $unit_price;
-		return $this->insert($save);
-    }
+		return $save;
+	}
 	public function fetchList($params = array()){
 		$order = ' ORDER BY O.id DESC ';
 		$where = '1';
 		$sql = "SELECT * FROM $this->tableName as O WHERE {$where} {$order}";
 		return $this->wpdb->get_results( $this->wpdb->prepare($sql, $params) );
+	}
+	public function fetchByOrderId($order_id){
+		$sql = "SELECT * FROM $this->tableName as O WHERE O.id = %d";
+		return $this->wpdb->get_row( $this->wpdb->prepare($sql, array($order_id)) );
 	}
 	public function fetchsByIds(array $ids){
 		$where = '';

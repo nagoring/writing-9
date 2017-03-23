@@ -7,17 +7,17 @@ function func_writing9_input_order() {
 	$form = Any_Definition_Form::getInstance();
 	$response = Any_Core_Response::getInstance();
 	$response->set('order_id', null);
-	$post_action = '';
 	$submit_text = '作成';
 	if(isset($_SESSION['any']) && !empty($_SESSION['any']['response'])){
 		$response = unserialize($_SESSION['any']['response']);
 		unset($_SESSION['any']);
 	}
     $view->render('views/v_writing9_input_order.php', array(
+		'heading_inline' => '記事パターン追加',
+		'post_action' => get_admin_url() . 'admin.php?page=writing9_add_order',
 		'form' => $form,
 		'error' => $error,
 		'response' => $response,
-		'post_action' => $post_action,
 		'submit_text' => $submit_text,
 	));
 }

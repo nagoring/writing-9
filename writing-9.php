@@ -39,6 +39,8 @@ if ( is_admin()) {
 	include dirname(__FILE__) . '/actions/writing9_order_list.php';
 	//発注するための記事パターンの作成
 	include dirname(__FILE__) . '/actions/writing9_input_order.php';
+	//発注するための記事パターンの更新
+	include dirname(__FILE__) . '/actions/writing9_edit_order.php';	
 	//発注するための記事パターンをデータベースに登録
 	include dirname(__FILE__) . '/actions/writing9_add_order.php';
 	//設定ページ
@@ -63,6 +65,7 @@ if ( is_admin()) {
 		
 		any_hidden_menu_page('writing9_order', 'func_writing9_purchase_order');
 		any_hidden_menu_page('writing9_add_order', '__return_false');
+		any_hidden_menu_page('writing9_edit_order', 'func_writing9_edit_order');
 
 		// add_submenu_page('writing9_manager', null, null, 0, 'writing9_order', 'func_writing9_purchase_order');
 		
