@@ -47,10 +47,11 @@ function any_create_attribute($attr, $parent_key=''){
 	$option_str = '';
 	if($attr && any_is_hash($attr)){
 		foreach($attr as $key => $value){
+			if($key === '' && $value === '')continue;
 			if($key === 'class'){
-				$option_str = " {$key}=\"{$value}\"";
+				$option_str .= " {$key}=\"{$value}\"";
 			}else{
-				$option_str = " {$key}=\"{$value}{$parent_key}\"";
+				$option_str .= " {$key}=\"{$value}{$parent_key}\"";
 			}
 		}
 	}
@@ -115,4 +116,47 @@ function any_writing9_check_for_authority(){
 }
 function any_writing9_merchant_email(){
 	return 'nagoling@gmail.com';
+}
+
+function any_writing9_validate_ordering(){
+	$error = Any_Core_Error::getInstance();
+    if(!isset($_POST['text_type']) || empty($_POST['text_type'])){
+		$error->add("文章タイプを入力してください");
+    }
+    if(!isset($_POST['number_articles']) || empty($_POST['number_articles'])){
+    	$error->add("希望記事数を入力してください");
+    }
+    if(!isset($_POST['main_word']) || empty($_POST['main_word'])){
+    	$error->add("メインワードを入力してください");
+    }
+    if(!isset($_POST['word_count']) || empty($_POST['word_count'])){
+    	$error->add("文字数を入力してください");
+    }
+    return $error->isNotError();
+}
+function any_writing9_set_order_for_response(Any_Core_Response $response, $post){
+	$response->set('text_type', any_safe($post, 'text_type', ''));
+	$response->set('end_of_sentence', any_safe($post, 'end_of_sentence', ''));
+	$response->set('purpose_ariticle', any_safe($post, 'purpose_ariticle', ''));
+	$response->set('text_taste', any_safe($post, 'text_taste', ''));
+	$response->set('note', any_safe($post, 'note', ''));
+	$response->set('number_articles', any_safe($post, 'number_articles', ''));
+	$response->set('word_count', any_safe($post, 'word_count', ''));
+	$response->set('title_creation', any_safe($post, 'title_creation', ''));
+	$response->set('visual_check', any_safe($post, 'visual_check', ''));
+	$response->set('format_setting', any_safe($post, 'format_setting', ''));
+	$response->set('format_setting_note', any_safe($post, 'format_setting_note', ''));
+	$response->set('use_pro_writer', any_safe($post, 'use_pro_writer', ''));
+	$response->set('genre', any_safe($post, 'genre', ''));
+	$response->set('title', any_safe($post, 'title', ''));
+	$response->set('main_word', any_safe($post, 'main_word', ''));
+	$response->set('keyword1', any_safe($post, 'keyword1', ''));
+	$response->set('keyword2', any_safe($post, 'keyword2', ''));
+	$response->set('keyword3', any_safe($post, 'keyword3', ''));
+	$response->set('keyword4', any_safe($post, 'keyword4', ''));
+	$response->set('keyword5', any_safe($post, 'keyword5', ''));
+	$response->set('ng_keyword1', any_safe($post, 'ng_keyword1', ''));
+	$response->set('ng_keyword2', any_safe($post, 'ng_keyword2', ''));
+	$response->set('reference_url', any_safe($post, 'reference_url', ''));
+	return $response;
 }

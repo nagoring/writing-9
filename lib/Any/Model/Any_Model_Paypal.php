@@ -19,6 +19,7 @@ class Any_Model_Paypal{
 		return $array;
 	}
 	public function connect(){
+		Any_Core_Log::write('paypal_connect', 'call connect:' . 'notify');
 		$request = array( 'cmd' => '_notify-validate' );
 		$request += wp_unslash( $_POST );
 
@@ -32,6 +33,7 @@ class Any_Model_Paypal{
         );
 
         $response = wp_safe_remote_post( $this->paypal_url, $params );
+		Any_Core_Log::write('paypal_connect', 'after wp_safe_remote_post:' . 'notify');
 
         if ( ! is_wp_error( $response ) && strstr( $response['body'], 'VERIFIED' ) ) {
 			if($this->post['payment_status'] == "Completed"){
@@ -59,15 +61,16 @@ class Any_Model_Paypal{
 		));
 		if(!$result){
 			Any_Core_Log::write('paypal', 'receiptsDb:' . 'error');
+			Any_Core_Log::write('paypal_post', var_export($this->post, true));
 			return false;
 		}
 		$receipt_id = $receiptsDb->getLastInsertId();
 		$orderIdsArray = explode(',', $order_ids_str);
 		
-		$this->any_writing9_update_order_ids_logic($orderIdsArray, $receipt_id);
+		$this->update_order_ids_logic($orderIdsArray, $receipt_id);
 		$orders = $ordersDb->fetchsByIds($orderIdsArray);
 		
-		Any_Core_Log::write('paypal', 'before new Any_Model_Mailer:' . 'error');
+		Any_Core_Log::write('paypal', 'before new Any_Model_Mailer:' . 'notify');
 		$mailer = new Any_Model_Mailer(array(
 			'orders' => $orders,
 			'from_email' => any_writing9_email(),
@@ -95,11 +98,11 @@ class Any_Model_Paypal{
 // Any_Core_Log::write('paypal', 'end verifileAfter:' . var_export($result, true));
 		return true;
 	}
-	function any_writing9_update_order_ids_logic(array $orderIdsArray, $receipt_id){
+	function update_order_ids_logic(array $orderIdsArray, $receipt_id){
 		$ordersDb = Any_Db_Orders::getInstance();
 		$receiptRelationsDb = Any_Db_ReceiptRelations::getInstance();
 		foreach($orderIdsArray as $order_id){
-			$ordersDb->updateByOrderId($order_id, Any_Definition_EStatus::$CREATING_ARTICLES);
+			$result = $ordersDb->updateByOrderId($order_id, Any_Definition_EStatus::$CREATING_ARTICLES);
 			if(!$result){
 				Any_Core_Log::write('paypal', 'updateByOrderId:' . 'error');
 				continue;
