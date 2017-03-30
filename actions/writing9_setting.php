@@ -18,6 +18,7 @@ function writing9_setting() {
 			$save['email'] = $response->get('email');
 			$save['ipn'] = $response->get('ipn');
 			$save['private_key'] = $response->get('private_key');
+			$save['api_key'] = any_writing9_api_key();
 			update_option('Any_Writing9', $save, 'no');
 			$option = get_option('Any_Writing9', false);
 			$error->clear();

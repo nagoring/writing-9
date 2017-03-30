@@ -75,6 +75,7 @@ class Any_Model_Paypal{
 			'orders' => $orders,
 			'from_email' => any_writing9_email(),
 			'url' => home_url(),
+			'receipt_id' => $receipt_id,
 		));
 		$mailer->send();
 // 		$result = $ordersDb->updateStatusByOrderIds($orderIdsArray, Any_Definition_EStatus::$CREATING_ARTICLES);

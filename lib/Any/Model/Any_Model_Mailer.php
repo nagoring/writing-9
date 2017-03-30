@@ -6,11 +6,13 @@ class Any_Model_Mailer{
 	private $from_email;
 	private $url;
 	private $orders;
+	private $receipt_id;
 	public function __construct($option){
 		$this->any_writing9_merchant_email = any_writing9_merchant_email();
 		$this->from_email = $option['from_email'];
 		$this->url = $option['url'];
 		$this->orders = $option['orders'];
+		$this->receipt_id = $option['receipt_id'];
 	}
 	public function send(){
 		$to = $this->any_writing9_merchant_email;
@@ -41,8 +43,14 @@ class Any_Model_Mailer{
 		$orderHelper = Any_Helper_Order::getInstance();
 		$orderHelper->init($order);
 		$view = Any_Core_View::getInstance();
+		$rest_api_url = get_rest_url() . 'writing9/v1/posts/';
+		
+
 		return $view->load('views/mail/m_purchase_order_partial.php', array(
-			'orderHelper' => $orderHelper
+			'orderHelper' => $orderHelper,
+			'rest_api_url' => $rest_api_url,
+			'api_key' => any_writing9_api_key(),
+			'receipt_id' => $this->receipt_id,
 		));
 	}
 

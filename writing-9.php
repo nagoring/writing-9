@@ -90,24 +90,23 @@ add_action( 'rest_api_init', function () {
 	) );
 } );
 function any_writing9_api_get_callback(){
+	$server = rest_get_server();
+	$routes = $server->get_routes();
 	return array(
 		'I am ' => 'get desu'
 	);
 }
 function any_writing9_api_posts_callback(){
-	$server = rest_get_server();
-	$routes = $server->get_routes();
 	$responseArray = json_decode(file_get_contents('php://input'), true);
 	if($responseArray['key'] !== any_writing9_api_key())exit;
-	$plus = 0;
-	foreach($responseArray['order_ids'] as $order_id){
-		$plus += $order_id * 10;
-	}
+	$order_ids = $responseArray['order_ids'];
+	if(empty($order_ids))return;
+	Any_Db_Orders::getInstance()->updateByOrderId($order_ids, Any_Definition_EStatus::$DONE);
+	
+	
 	return array(
-		'plus' => $plus,
-		'helo' => 'world',
-		'rest_url' => rest_url('writing9/v1'),
-		
+		'result' => true,
+		'order_ids' => $order_ids,
 	);
 }
 function writing9_init_handler(){

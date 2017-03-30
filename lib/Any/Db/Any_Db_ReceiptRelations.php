@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
   `receit_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   PRIMARY KEY (`receit_id`,`order_id`),
-  UNIQUE KEY `order_id` (`order_id`),
+  KEY `order_id` (`order_id`),
   KEY `receit_id` (`receit_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 		";
