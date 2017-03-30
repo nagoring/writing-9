@@ -91,6 +91,11 @@ function any_writing9_ipn(){
 	if($option === false)return '';
 	return $option['ipn'];
 }
+function any_writing9_api_key(){
+	$option = get_option('Any_Writing9', false);
+	if($option === false)return '';
+	return $option['api_key'];
+}
 
 function any_writing9_set_setting_and_get(){
 	$option = get_option('Any_Writing9', array());
@@ -102,6 +107,9 @@ function any_writing9_set_setting_and_get(){
 	}
 	if(!isset($option['ipn']) || $option['ipn'] === ''){
 		$option['ipn'] = wp_hash(rand(0, 9999), 'writing9');
+	}
+	if(!isset($option['api_key']) || $option['api_key'] === ''){
+		$option['api_key'] = wp_hash(rand(0, 9999), 'writing9' . site_url());
 	}
 	
 	update_option('Any_Writing9', $option, 'no');

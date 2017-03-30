@@ -12,18 +12,18 @@ function writing9_setting() {
     if(isset($_POST['original_publish']) && strlen($_POST['original_publish']) > 0 && check_admin_referer('writing9_setting', '_writing9_nonce')){
 		$response->set('email', any_safe($_POST, 'email', ''));
 		$response->set('ipn', any_safe($_POST, 'ipn', ''));
+		$response->set('private_key', any_safe($_POST, 'private_key', ''));
 		if(_writing9_validate_setting()){
 			$save = array();
 			$save['email'] = $response->get('email');
 			$save['ipn'] = $response->get('ipn');
 			$save['private_key'] = $response->get('private_key');
-			
 			update_option('Any_Writing9', $save, 'no');
 			$option = get_option('Any_Writing9', false);
 			$error->clear();
 		}
     }
-	
+	$option = any_writing9_set_setting_and_get();
 	$response->set('email', $option['email']);
 	$response->set('ipn', $option['ipn']);
 	$response->set('private_key', $option['private_key']);

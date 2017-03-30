@@ -57,7 +57,7 @@ if($order->status != Any_Definition_EStatus::$NOT_PAYMENT){
 			<div id="titlediv">
 				<div id="titlewrap">
 					<label class="" id="title-prompt-text" for="title">ここに記事パターンのタイトルを入力</label>
-					<input type="text" id="title" name="title" <?php echo $disabled?>><?php echo $response->get('title')?></input>
+					<input type="text" id="title" name="title" <?php echo $disabled?>><?php echo esc_attr($response->get('title'))?></input>
 				</div>
 				<div class="inside">　</div>
 			</div>
@@ -66,7 +66,7 @@ if($order->status != Any_Definition_EStatus::$NOT_PAYMENT){
 				<h2 class="hndle ui-sortable-handle">文章タイプ<small>（説明文、体験談、雑学・お役立ち、紹介文など）</small></h2>
 				<div class="inside">
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">文章タイプ・用途<span class="w9-require">必須</span></label></p>
-					<textarea class="w9-textarea" id="text_type" name="text_type" aria-required="true" required="required"<?php echo $disabled?>><?php echo $response->get('text_type')?></textarea>
+					<textarea class="w9-textarea" id="text_type" name="text_type" aria-required="true" required="required"<?php echo $disabled?>><?php echo esc_attr($response->get('text_type'))?></textarea>
 					<p>説明文、体験談、雑学・お役立ち、紹介文など、どんな文章にしたいのか記入してください。</p>
 					
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">文末表現</label></p>
@@ -89,7 +89,7 @@ if($order->status != Any_Definition_EStatus::$NOT_PAYMENT){
 					]);?>
 					
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">参考URL</label></p>	
-					<input type="text" id="reference_url" name="reference_url" value="<?php echo $response->get('reference_url')?>" <?php echo $disabled?>></input>
+					<input type="text" id="reference_url" name="reference_url" value="<?php echo esc_attr($response->get('reference_url'))?>" <?php echo $disabled?>></input>
 				</div>
 			</div>
 		
@@ -98,16 +98,16 @@ if($order->status != Any_Definition_EStatus::$NOT_PAYMENT){
 				<h2 class="hndle ui-sortable-handle">キーワード設定</h2>
 				<div class="inside">
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">メインワード</label><span class="w9-require">必須</span></p>
-					<input type="text" id="main_word" name="main_word" required="required" value="<?php echo $response->get('main_word')?>" <?php echo $disabled?>></input>
+					<input type="text" id="main_word" name="main_word" required="required" value="<?php echo esc_attr($response->get('main_word'))?>" <?php echo $disabled?>></input>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">キーワード</label></p>
-					<input type="text" id="keyword1" name="keyword1" value="<?php echo $response->get('keyword1')?>" <?php echo $disabled?>></input>
-					<input type="text" id="keyword2" name="keyword2" value="<?php echo $response->get('keyword2')?>" <?php echo $disabled?>></input>
-					<input type="text" id="keyword3" name="keyword3" value="<?php echo $response->get('keyword3')?>" <?php echo $disabled?>></input>
-					<input type="text" id="keyword4" name="keyword4" value="<?php echo $response->get('keyword4')?>" <?php echo $disabled?>></input>
-					<input type="text" id="keyword5" name="keyword5" value="<?php echo $response->get('keyword5')?>" <?php echo $disabled?>></input>
+					<input type="text" id="keyword1" name="keyword1" value="<?php echo esc_attr($response->get('keyword1'))?>" <?php echo $disabled?>></input>
+					<input type="text" id="keyword2" name="keyword2" value="<?php echo esc_attr($response->get('keyword2'))?>" <?php echo $disabled?>></input>
+					<input type="text" id="keyword3" name="keyword3" value="<?php echo esc_attr($response->get('keyword3'))?>" <?php echo $disabled?>></input>
+					<input type="text" id="keyword4" name="keyword4" value="<?php echo esc_attr($response->get('keyword4'))?>" <?php echo $disabled?>></input>
+					<input type="text" id="keyword5" name="keyword5" value="<?php echo esc_attr($response->get('keyword5'))?>" <?php echo $disabled?>></input>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">NGワード</label></p>
-					<input type="text" id="ng_keyword1" name="ng_keyword1" value="<?php echo $response->get('ng_keyword1')?>" <?php echo $disabled?>></input>
-					<input type="text" id="ng_keyword2" name="ng_keyword2" value="<?php echo $response->get('ng_keyword2')?>" <?php echo $disabled?>></input>
+					<input type="text" id="ng_keyword1" name="ng_keyword1" value="<?php echo esc_attr($response->get('ng_keyword1'))?>" <?php echo $disabled?>></input>
+					<input type="text" id="ng_keyword2" name="ng_keyword2" value="<?php echo esc_attr($response->get('ng_keyword2'))?>" <?php echo $disabled?>></input>
 				</div>
 			</div>
 			

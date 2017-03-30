@@ -1,13 +1,13 @@
 注文画面
 
 合計金額
-<?php echo $total_price?>
+<?php echo (int)$total_price?>
 
 <form action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post' target="_blank">
 <input type='hidden' name='cmd' value='_xclick'>
 <input type='hidden' name='business' value='makisoho-facilitator@gmail.com'>
 <input type='hidden' name='item_name' value='TOTAL'>
-<input type='hidden' name='amount' value='<?php echo $total_price?>'>
+<input type='hidden' name='amount' value='<?php echo (int)$total_price?>'>
 <input type='hidden' name='currency_code' value='JPY'>
 <input type='hidden' name='notify_url' value='<?php echo any_notify_url()?>'>
 <input type='hidden' name='return' value='<?php echo admin_url()?>admin.php?page=writing9_order_list'>

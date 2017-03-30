@@ -79,6 +79,37 @@ if ( is_admin()) {
 	
 	
 }
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'writing9/v1', '/get/', array(
+		'methods' => WP_REST_Server::READABLE,
+		'callback' => 'any_writing9_api_get_callback',
+	) );
+	register_rest_route( 'writing9/v1', '/posts/', array(
+		'methods' => WP_REST_Server::CREATABLE,
+		'callback' => 'any_writing9_api_posts_callback',
+	) );
+} );
+function any_writing9_api_get_callback(){
+	return array(
+		'I am ' => 'get desu'
+	);
+}
+function any_writing9_api_posts_callback(){
+	$server = rest_get_server();
+	$routes = $server->get_routes();
+	$responseArray = json_decode(file_get_contents('php://input'), true);
+	if($responseArray['key'] !== any_writing9_api_key())exit;
+	$plus = 0;
+	foreach($responseArray['order_ids'] as $order_id){
+		$plus += $order_id * 10;
+	}
+	return array(
+		'plus' => $plus,
+		'helo' => 'world',
+		'rest_url' => rest_url('writing9/v1'),
+		
+	);
+}
 function writing9_init_handler(){
 	Any_Core_Log::write('paypal_ipn', 'called writing9_init_handler:' . 'notify');
 	
@@ -94,3 +125,16 @@ function writing9_init_handler(){
 
 
 
+//add_action( 'rest_api_init', function () {
+//  register_rest_route( 'writing9/v1', '/posts/', array(
+//    'methods' => WP_REST_Server::READABLE,
+//    'callback' => 'any_writing9_say_callback',
+//  ) );
+//} );
+//
+//function any_writing9_say_callback(){
+//  return array(
+//    'say' => 'helloworld',
+//  );
+//}
+//
