@@ -86,4 +86,24 @@
 <?php echo $orderHelper->format_setting_note()?>
 
 
+- rest api url
+<?php echo $rest_api_url?>
+
+
+- api key
+<?php echo $api_key?>
+
+
+- home url
+<?php echo home_url()?>
+
+
+- receipt_id
+<?php echo $receipt_id?>
+
+
+- order_id
+<?php echo $orderHelper->id()?>
+
+
 ==========
