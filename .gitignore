@@ -5,6 +5,6 @@ node_modules/
 *.zip
 *.tar.gz
 vendor
-tmp/*/*
-tmp/
 tmp/log/add_order.txt
+tmp/wordpress-tests-lib
+*.log

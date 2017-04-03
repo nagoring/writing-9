@@ -80,29 +80,21 @@ if ( is_admin()) {
 	
 }
 add_action( 'rest_api_init', function () {
-	register_rest_route( 'writing9/v1', '/get/', array(
-		'methods' => WP_REST_Server::READABLE,
-		'callback' => 'any_writing9_api_get_callback',
-	) );
 	register_rest_route( 'writing9/v1', '/posts/', array(
 		'methods' => WP_REST_Server::CREATABLE,
 		'callback' => 'any_writing9_api_posts_callback',
 	) );
 } );
-function any_writing9_api_get_callback(){
-	$server = rest_get_server();
-	$routes = $server->get_routes();
-	return array(
-		'I am ' => 'get desu'
-	);
-}
 function any_writing9_api_posts_callback(){
 	$responseArray = json_decode(file_get_contents('php://input'), true);
 	if($responseArray['key'] !== any_writing9_api_key())exit;
 	$order_ids = $responseArray['order_ids'];
 	if(empty($order_ids))return;
-	Any_Db_Orders::getInstance()->updateStatusByOrderIds($order_ids, Any_Definition_EStatus::$DONE);
+	$date = date('YmdHis');
+	Any_Core_Log::write("order_{$date}", json_encode($responseArray));
+	$csv = $responseArray['csv'];
 	
+	Any_Db_Orders::getInstance()->updateStatusByOrderIds($order_ids, Any_Definition_EStatus::$DONE);
 	
 	return array(
 		'result' => true,
