@@ -101,7 +101,7 @@ function any_writing9_api_posts_callback(){
 	if($responseArray['key'] !== any_writing9_api_key())exit;
 	$order_ids = $responseArray['order_ids'];
 	if(empty($order_ids))return;
-	Any_Db_Orders::getInstance()->updateByOrderId($order_ids, Any_Definition_EStatus::$DONE);
+	Any_Db_Orders::getInstance()->updateStatusByOrderIds($order_ids, Any_Definition_EStatus::$DONE);
 	
 	
 	return array(

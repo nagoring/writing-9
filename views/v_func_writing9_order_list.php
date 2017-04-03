@@ -73,7 +73,7 @@ $orderHelper = Any_Helper_Order::getInstance();
 		<td class="title column-title has-row-actions column-primary page-title" data-colname="タイトル">
 			<div class="locked-info"><span class="locked-avatar"></span>
 			<span class="locked-text"></span></div>
-		<strong><a class="row-title" href="#" aria-label="<?php echo $orderHelper->listTitle()?>の詳細"><?php echo $orderHelper->listTitle()?></a></strong>
+		<strong><a class="row-title" href="?page=writing9_edit_order&order_id=<?php echo $orderHelper->id()?>" aria-label="<?php echo $orderHelper->listTitle()?>の詳細"><?php echo $orderHelper->listTitle()?>(id:<?php echo $orderHelper->id()?>)</a></strong>
 	<div class="row-actions">
 		<span class="edit"><a href="?page=writing9_edit_order&order_id=<?php echo $orderHelper->id()?>" aria-label="<?php echo $orderHelper->listTitle()?>の詳細">詳細</a></span>
 	</div>
@@ -187,15 +187,19 @@ $orderHelper = Any_Helper_Order::getInstance();
 </div>
 <div class="tablenav bottom">
 
-	<div class="alignleft actions bulkactions">
-			<label for="bulk-action-selector-bottom" class="screen-reader-text">一括操作を選択</label><select name="action2" id="bulk-action-selector-bottom">
+<?php 
+/*
+<div class="alignleft actions bulkactions">
+	<label for="bulk-action-selector-bottom" class="screen-reader-text">一括操作を選択</label><select name="action2" id="bulk-action-selector-bottom">
 	<option value="-1">一括操作</option>
 	<option value="payment">一括決済</option>
 	<option value="edit" class="hide-if-no-js">編集</option>
 	<option value="trash">ゴミ箱へ移動</option>
-</select>
-<input type="submit" id="doaction2" class="button action" value="適用">
-		</div>
+	</select>
+	<input type="submit" id="doaction2" class="button action" value="適用">
+</div>
+*/
+?>
 				<div class="alignleft actions">
 		</div>
 <div class="tablenav-pages one-page"><span class="displaying-num">2個の項目</span>
