@@ -59,7 +59,7 @@ if ( is_admin()) {
 		// トップレベルメニュー追加 ( メニューの一番下に追加される )
 		add_menu_page('Writing-9', 'Writing-9', 8, 'writing9_manager', 'writing9_setting');
 		add_submenu_page('writing9_manager', 'Writing-9一覧', '一覧', 8, 'writing9_order_list', 'func_writing9_order_list');
-		add_submenu_page('writing9_manager', 'Writing-9作成', '作成', 8, 'writing9_input_order', 'func_writing9_input_order');
+		add_submenu_page('writing9_manager', 'Writing-9作成', '記事パターン作成', 8, 'writing9_input_order', 'func_writing9_input_order');
 
 
 		

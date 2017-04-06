@@ -1,7 +1,24 @@
-注文画面
+<div class="wrap">
+	<div id="poststuff">
+    <h1 class="wp-heading-inline">発注しますか？</h1>
+    <hr class="wp-header-end">
+    <hr >
 
-合計金額
-<?php echo (int)$total_price?>
+
+	
+	<div id="post-body" class="metabox-holder columns-2">
+    
+<div id="post-body-content" style="position: relative;"> 
+
+		<div id="postbox-container-2" class="postbox-container ">
+			<div id="titlediv">
+				<div id="titlewrap">
+					<strong>以下の購入ボタンをクリックしてください。<br>
+					合計：<?php echo (int)$total_price?>円</strong>
+				</div>
+			</div>		
+		</div>				
+</div>		
 
 <form action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post' target="_blank">
 <input type='hidden' name='cmd' value='_xclick'>
@@ -16,5 +33,5 @@
 <input type="image" src="https://www.paypalobjects.com/ja_JP/JP/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - オンラインでより安全・簡単にお支払い">
 </form>
 
-
-
+	</div>
+</div>

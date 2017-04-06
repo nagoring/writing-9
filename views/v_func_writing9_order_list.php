@@ -14,8 +14,7 @@ $orderHelper = Any_Helper_Order::getInstance();
 
 <ul class="subsubsub">
 	<li class="all"><a href="edit.php?post_type=post" class="current">すべて <span class="count">(2)</span></a> |</li>
-	<li class="publish"><a href="edit.php?post_status=publish&amp;post_type=post">依頼済み <span class="count">(1)</span></a> |</li>
-	<li class="private"><a href="edit.php?post_status=private&amp;post_type=post">未入金 <span class="count">(1)</span></a></li>
+
 </ul>
 
 	<div class="inside">
@@ -73,7 +72,7 @@ $orderHelper = Any_Helper_Order::getInstance();
 		<td class="title column-title has-row-actions column-primary page-title" data-colname="タイトル">
 			<div class="locked-info"><span class="locked-avatar"></span>
 			<span class="locked-text"></span></div>
-		<strong><a class="row-title" href="?page=writing9_edit_order&order_id=<?php echo $orderHelper->id()?>" aria-label="<?php echo $orderHelper->listTitle()?>の詳細"><?php echo $orderHelper->listTitle()?>(id:<?php echo $orderHelper->id()?>)</a></strong>
+		<strong><a class="row-title" href="?page=writing9_edit_order&order_id=<?php echo $orderHelper->id()?>" aria-label="<?php echo $orderHelper->listTitle()?>の詳細"><?php echo $orderHelper->Title()?>(id:<?php echo $orderHelper->id()?>)</a></strong>
 	<div class="row-actions">
 		<span class="edit"><a href="?page=writing9_edit_order&order_id=<?php echo $orderHelper->id()?>" aria-label="<?php echo $orderHelper->listTitle()?>の詳細">詳細</a></span>
 	</div>

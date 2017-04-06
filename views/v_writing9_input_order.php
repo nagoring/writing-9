@@ -56,8 +56,7 @@ if($order->status != Any_Definition_EStatus::$NOT_PAYMENT){
 		<div id="postbox-container-2" class="postbox-container ">
 			<div id="titlediv">
 				<div id="titlewrap">
-					<label class="" id="title-prompt-text" for="title">ここに記事パターンのタイトルを入力</label>
-					<input type="text" id="title" name="title" <?php echo $disabled?>><?php echo esc_attr($response->get('title'))?></input>
+					<input type="text" id="title" name="title" placeholder="ここに記事パターンのタイトルを入力" <?php echo $disabled?> value="<?php echo esc_attr($response->get('title'))?>"></input>
 				</div>
 				<div class="inside">　</div>
 			</div>
