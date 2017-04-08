@@ -20,9 +20,9 @@
 		</div>				
 </div>		
 
-<form action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post'>
+<form action='<?php echo any_writing9_paypal_url()?>' method='post'>
 <input type='hidden' name='cmd' value='_xclick'>
-<input type='hidden' name='business' value='makisoho-facilitator@gmail.com'>
+<input type='hidden' name='business' value='<?php echo any_writing9_paypal_business()?>'>
 <input type='hidden' name='item_name' value='TOTAL'>
 <input type='hidden' name='amount' value='<?php echo (int)$total_price?>'>
 <input type='hidden' name='currency_code' value='JPY'>

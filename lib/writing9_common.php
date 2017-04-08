@@ -136,7 +136,23 @@ function any_writing9_merchant_email(){
 function any_writing9_merchant_email_cc(){
 	return 'nagoling@gmail.com';
 }
-
+function any_writing9_use_sandbox(){
+	return true;
+}
+function any_writing9_paypal_url(){
+	if(any_writing9_use_sandbox()){
+		return 'https://www.sandbox.paypal.com/cgi-bin/webscr';
+	}else{
+		return 'https://www.paypal.com/cgi-bin/webscr';
+	}
+}
+function any_writing9_paypal_business(){
+	if(any_writing9_use_sandbox()){
+		return 'makisoho-facilitator@gmail.com';
+	}else{
+		return 'amano@polarbear.work';
+	}
+}
 function any_writing9_validate_ordering(){
 	$error = Any_Core_Error::getInstance();
     if(!isset($_POST['text_type']) || empty($_POST['text_type'])){

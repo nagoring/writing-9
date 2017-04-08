@@ -1,14 +1,11 @@
 <?php
 
 class Any_Model_Paypal{
-	private $paypal_domain;
+//	private $paypal_domain;
 	private $paypal_url;
 	private $post;
 	public function __construct($post, $option=array()){
-		// : 'https://www.paypal.com/cgi-bin/webscr'
-        $this->paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
-		// $this->paypal_domain = "www.paypal.com";	// 本番サイト
-		$this->paypal_domain = "www.sandbox.paypal.com";	// テストサイト
+		$this->paypal_url = any_writing9_paypal_url();
 		$this->post = $post;
 	}
 	function _extructCustom(){
