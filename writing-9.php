@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name:     Writing 9
- * Plugin URI:      PLUGIN SITE HERE
- * Description:     PLUGIN DESCRIPTION HERE
- * Author:          YOUR NAME HERE
- * Author URI:      YOUR SITE HERE
+ * Plugin URI:      https://github.com/nagoring/writing-9
+ * Description:     投稿記事の作成を依頼するプラグインです。
+ * Author:          Any
+ * Author URI:      http://writing-9.polarbear.work/
  * Text Domain:     writing-9
  * Domain Path:     /languages
- * Version:         0.1.0
+ * Version:         0.9.0
  *
  * @package         Writing_9
  */
@@ -131,17 +131,3 @@ function writing9_init_handler(){
 }
 
 
-
-//add_action( 'rest_api_init', function () {
-//  register_rest_route( 'writing9/v1', '/posts/', array(
-//    'methods' => WP_REST_Server::READABLE,
-//    'callback' => 'any_writing9_say_callback',
-//  ) );
-//} );
-//
-//function any_writing9_say_callback(){
-//  return array(
-//    'say' => 'helloworld',
-//  );
-//}
-//
