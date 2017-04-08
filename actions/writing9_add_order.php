@@ -27,7 +27,9 @@ function writing9_add_order() {
 				}
 				
 				$response->set('order_id', $order_id);
-				unset($_SESSION['any']);
+				if(isset($_SESSION['any'])){
+					unset($_SESSION['any']);
+				}
 				wp_redirect(get_admin_url() . 'admin.php?page=writing9_order_list');
 				exit();
 		    }else{
