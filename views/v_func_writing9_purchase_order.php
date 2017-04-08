@@ -20,7 +20,7 @@
 		</div>				
 </div>		
 
-<form action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post' target="_blank">
+<form action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post'>
 <input type='hidden' name='cmd' value='_xclick'>
 <input type='hidden' name='business' value='makisoho-facilitator@gmail.com'>
 <input type='hidden' name='item_name' value='TOTAL'>
