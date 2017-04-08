@@ -159,10 +159,6 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		$params[] = $status;
 		$params[] = $order_id;
 		$sql = "UPDATE {$this->tableName} as O SET `status`=%d WHERE O.id = %d";
-
-		Any_Core_Log::write('paypal_Any_Db_Orders', 'updateByOrderId:' . $sql);
-		Any_Core_Log::write('paypal_Any_Db_Orders', var_export($params, true));
-
 		return $this->wpdb->get_results( $this->wpdb->prepare($sql, $params) );
 	}
 }

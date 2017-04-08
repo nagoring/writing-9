@@ -17,7 +17,6 @@ function writing9_add_order() {
 			$response = Any_Core_Response::getInstance();
 			any_writing9_set_order_for_response($response, $_POST);
 		    if(any_writing9_validate_ordering()){
-	Any_Core_Log::write('add_order.txt', 'validate ok');
 				$ordersDb = Any_Db_Orders::getInstance();
 				$ordersDb->saveResponse($response);
 				$order_id = $ordersDb->getLastInsertId();
@@ -32,14 +31,12 @@ function writing9_add_order() {
 				wp_redirect(get_admin_url() . 'admin.php?page=writing9_order_list');
 				exit();
 		    }else{
-	Any_Core_Log::write('add_order.txt', 'Not validate');
 		    	$_SESSION['any'] = ['response' => serialize($response)];
 				$error = Any_Core_Error::getInstance();
 				wp_redirect(get_admin_url() . 'admin.php?page=writing9_manager');
 				exit();
 		    }
 	    }
-	Any_Core_Log::write('add_order.txt', 'end');
     	
 	}
 }	

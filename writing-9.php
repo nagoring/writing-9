@@ -87,11 +87,15 @@ function any_writing9_api_posts_callback(){
 	$responseArray = json_decode(file_get_contents('php://input'), true);
 	if($responseArray['key'] !== any_writing9_api_key())exit;
 	$order_ids = $responseArray['order_ids'];
+	$author_user_id = $responseArray['author_user_id'];
 	if(empty($order_ids))return;
 	$date = date('YmdHis');
 	Any_Core_Log::write("order_{$date}", json_encode($responseArray));
 	$csv = $responseArray['csv'];
-	
+	Any_Core_Log::write('csv.log', var_export($csv, true));
+	array(
+		'post_title' => '',
+	);
 	Any_Db_Orders::getInstance()->updateStatusByOrderIds($order_ids, Any_Definition_EStatus::$DONE);
 	
 	return array(
@@ -104,7 +108,7 @@ function writing9_init_handler(){
 	if(!isset($_GET['writing9_ipn']))return;
 	if($_GET['writing9_ipn'] !== $any_writing9_ipn) return;
 
-	Any_Core_Log::write('paypal_ipn', 'new Any_Model_Paypal :' . 'notify');
+	Any_Core_Log::write('paypal_ipn.log', 'new Any_Model_Paypal :' . 'notify');
 	$paypal = new Any_Model_Paypal($_POST);
 	$paypal->connect();
 }

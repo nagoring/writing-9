@@ -52,8 +52,6 @@ class Any_Db_Db {
 		// echo "sql:$sql<br>" . PHP_EOL;
 		// exit;
 //		return $this->wpdb->query($sql);
-Any_Core_Log::write('insert', 'sql:' . $sql);
-Any_Core_Log::write('insert', 'params:' . var_export($value_array, true));
 		return $this->wpdb->query( $this->wpdb->prepare($sql, $value_array) );
 	}
 	/**

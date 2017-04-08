@@ -19,7 +19,7 @@ class Any_Model_Paypal{
 		return $array;
 	}
 	public function connect(){
-		Any_Core_Log::write('paypal_connect', 'call connect:' . 'notify');
+		Any_Core_Log::write('paypal_connect.log', 'call connect:' . 'notify');
 		$request = array( 'cmd' => '_notify-validate' );
 		$request += wp_unslash( $_POST );
 
@@ -33,7 +33,7 @@ class Any_Model_Paypal{
         );
 
         $response = wp_safe_remote_post( $this->paypal_url, $params );
-		Any_Core_Log::write('paypal_connect', 'after wp_safe_remote_post:' . 'notify');
+		Any_Core_Log::write('paypal_connect.log', 'after wp_safe_remote_post:' . 'notify');
 
         if ( ! is_wp_error( $response ) && strstr( $response['body'], 'VERIFIED' ) ) {
 			if($this->post['payment_status'] == "Completed"){
@@ -43,7 +43,7 @@ class Any_Model_Paypal{
         return false;
 	}
 	function _verifiedAfter(){
-		Any_Core_Log::write('paypal', 'call _verifiedAfter:' . 'error');
+		Any_Core_Log::write('paypal.log', 'call _verifiedAfter:' . 'notify');
 		$ordersDb = Any_Db_Orders::getInstance();
 		$receiptsDb = Any_Db_Receipts::getInstance();
 		$receiptRelationsDb = Any_Db_ReceiptRelations::getInstance();
@@ -60,8 +60,8 @@ class Any_Model_Paypal{
 			'post_json' => json_encode($this->post),
 		));
 		if(!$result){
-			Any_Core_Log::write('paypal', 'receiptsDb:' . 'error');
-			Any_Core_Log::write('paypal_post', var_export($this->post, true));
+			Any_Core_Log::write('paypal_error.log', 'receiptsDb:' . 'error');
+			Any_Core_Log::write('paypal_post_error.log', var_export($this->post, true));
 			return false;
 		}
 		$receipt_id = $receiptsDb->getLastInsertId();
@@ -70,7 +70,7 @@ class Any_Model_Paypal{
 		$this->update_order_ids_logic($orderIdsArray, $receipt_id);
 		$orders = $ordersDb->fetchsByIds($orderIdsArray);
 		
-		Any_Core_Log::write('paypal', 'before new Any_Model_Mailer:' . 'notify');
+		Any_Core_Log::write('paypal.log', 'before new Any_Model_Mailer:' . 'notify');
 		$mailer = new Any_Model_Mailer(array(
 			'orders' => $orders,
 			'from_email' => any_writing9_email(),
@@ -82,7 +82,6 @@ class Any_Model_Paypal{
 		$mailer->send();
 // 		$result = $ordersDb->updateStatusByOrderIds($orderIdsArray, Any_Definition_EStatus::$CREATING_ARTICLES);
 // 		if(!$result){
-// Any_Core_Log::write('paypal', 'updateStatusByOrderIds:' . 'error');
 // 			return false;
 // 		}
 // 		$order_id = $ordersDb->getLastInsertId();
@@ -91,14 +90,11 @@ class Any_Model_Paypal{
 // 			'receipt_id' => $receipt_id,
 // 		));
 // 		if(!$result){
-// Any_Core_Log::write('paypal', 'receiptRelationsDb:' . 'error');
 // 			return false;
 // 		}
 		
 	
 		
-// Any_Core_Log::write('paypal', 'end orderIdsArray:' . var_export($orderIdsArray, true));
-// Any_Core_Log::write('paypal', 'end verifileAfter:' . var_export($result, true));
 		return true;
 	}
 	function update_order_ids_logic(array $orderIdsArray, $receipt_id){
@@ -107,7 +103,7 @@ class Any_Model_Paypal{
 		foreach($orderIdsArray as $order_id){
 			$result = $ordersDb->updateByOrderId($order_id, Any_Definition_EStatus::$CREATING_ARTICLES);
 			if(!$result){
-				Any_Core_Log::write('paypal', 'updateByOrderId:' . 'error');
+				Any_Core_Log::write('paypal_error.log', 'updateByOrderId:' . 'error');
 				continue;
 			}
 			$result = $receiptRelationsDb->insert(array(
@@ -115,7 +111,7 @@ class Any_Model_Paypal{
 				'receipt_id' => $receipt_id,
 			));
 			if(!$result){
-				Any_Core_Log::write('paypal', 'receiptRelationsDb:' . 'error');
+				Any_Core_Log::write('paypal_error.log', 'receiptRelationsDb:' . 'error');
 				continue;
 			}
 		}
