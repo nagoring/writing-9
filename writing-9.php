@@ -90,14 +90,14 @@ function any_writing9_api_posts_callback(){
 	$author_user_id = $responseArray['author_user_id'];
 	if(empty($order_ids))return;
 	$date = date('YmdHis');
-	Any_Core_Log::write("order_{$date}", json_encode($responseArray));
+	Any_Core_Log::write("order_{$date}.log", json_encode($responseArray));
 	$linesArray = $responseArray['csv'];
 	Any_Core_Log::write('csv.log', var_export($linesArray, true));
 	for($i=1;$i<count($linesArray);$i++){
 		$fields = $linesArray[$i];
 		$post_title = $fields[Any_Definition_ECsv::$TITLE];
 		$post_status = 'publish';
-		if(mb_strlen($post_title) > 0){
+		if(mb_strlen($post_title) === 0){
 			$post_title = '空のタイトルです';
 			$post_status = 'draft';
 		}

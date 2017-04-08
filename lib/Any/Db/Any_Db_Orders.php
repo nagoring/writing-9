@@ -161,4 +161,9 @@ CREATE TABLE IF NOT EXISTS `{$table}` (
 		$sql = "UPDATE {$this->tableName} as O SET `status`=%d WHERE O.id = %d";
 		return $this->wpdb->get_results( $this->wpdb->prepare($sql, $params) );
 	}
+	public function createEmptyObject(){
+		$obj = new stdClass();
+		$obj->status = '';
+		return $obj;
+	}
 }
