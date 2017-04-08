@@ -2,7 +2,7 @@
 
 class Any_Core_Response{
     public $data = array();
-    public function getInstance(){
+    public static function getInstance(){
         static $instance = null;
         if($instance === null){
             $instance = new self();

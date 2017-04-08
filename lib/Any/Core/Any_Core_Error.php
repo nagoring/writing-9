@@ -1,7 +1,7 @@
 <?php 
 class Any_Core_Error{
     public $messages = array();
-    public function getInstance(){
+    public static function getInstance(){
         static $instance = null;
         if($instance === null){
             $instance = new self();
