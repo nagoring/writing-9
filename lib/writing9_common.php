@@ -131,7 +131,9 @@ function any_writing9_check_for_authority(){
 	return current_user_can('administrator');
 }
 function any_writing9_merchant_email(){
-//	return 'amano@polarbear.work';
+	return 'amano@polarbear.work';
+}
+function any_writing9_merchant_email_cc(){
 	return 'nagoling@gmail.com';
 }
 

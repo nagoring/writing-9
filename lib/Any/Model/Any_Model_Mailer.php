@@ -22,7 +22,8 @@ class Any_Model_Mailer{
         $headers = array();
         $headers[] = 'From: ' . $this->from_email . "";
 //        $headers[] = 'Cc: nagoling@gmail.com';
-        $headers[] = 'Cc: pcd27120@disaq.com';
+		$cc = any_writing9_merchant_email_cc();
+        $headers[] = "Cc: {$cc}";
         $message = $this->_getBody();
         // $attachments
 		wp_mail($to, $subject, $message, $headers);
