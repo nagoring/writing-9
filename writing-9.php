@@ -91,11 +91,28 @@ function any_writing9_api_posts_callback(){
 	if(empty($order_ids))return;
 	$date = date('YmdHis');
 	Any_Core_Log::write("order_{$date}", json_encode($responseArray));
-	$csv = $responseArray['csv'];
-	Any_Core_Log::write('csv.log', var_export($csv, true));
-	array(
-		'post_title' => '',
-	);
+	$linesArray = $responseArray['csv'];
+	Any_Core_Log::write('csv.log', var_export($linesArray, true));
+	for($i=1;$i<count($linesArray);$i++){
+		$fields = $linesArray[$i];
+		$post_title = $fields[Any_Definition_ECsv::$TITLE];
+		$post_status = 'publish';
+		if(mb_strlen($post_title) > 0){
+			$post_title = '空のタイトルです';
+			$post_status = 'draft';
+		}
+		$post = array(
+			'post_title' => $post_title,
+			'post_content' => $fields[Any_Definition_ECsv::$BODY],
+			'post_status' => $post_status,
+			'post_author' => $author_user_id,
+		);
+		$result = wp_insert_post($post);
+		if((int)$result === 0){
+			Any_Core_Log::write('wp_insert_post_faild.log', var_export($post, true));
+			Any_Core_Log::write('wp_insert_post_failed.log', 'Failed');
+		}
+	}
 	Any_Db_Orders::getInstance()->updateStatusByOrderIds($order_ids, Any_Definition_EStatus::$DONE);
 	
 	return array(
