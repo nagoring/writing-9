@@ -131,8 +131,8 @@ function any_writing9_check_for_authority(){
 	return current_user_can('administrator');
 }
 function any_writing9_merchant_email(){
-	return 'amano@polarbear.work';
-//	return 'nagoling@gmail.com';
+//	return 'amano@polarbear.work';
+	return 'nagoling@gmail.com';
 }
 
 function any_writing9_validate_ordering(){
