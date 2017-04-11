@@ -63,7 +63,7 @@ function any_is_hash($var){
 function any_is_date($datetime){
     return $datetime === date("Y-m-d H:i:s", strtotime($datetime));
 }
-function any_notify_url(){
+function any_wiring9_notify_url(){
 	$option = get_option('Any_Writing9', false);
 	$option = any_writing9_set_setting_and_get();
 	$ipn = $option['ipn'];

@@ -26,7 +26,7 @@
 <input type='hidden' name='item_name' value='TOTAL'>
 <input type='hidden' name='amount' value='<?php echo (int)$total_price?>'>
 <input type='hidden' name='currency_code' value='JPY'>
-<input type='hidden' name='notify_url' value='<?php echo any_notify_url()?>'>
+<input type='hidden' name='notify_url' value='<?php echo any_wiring9_notify_url()?>'>
 <input type='hidden' name='return' value='<?php echo admin_url()?>admin.php?page=writing9_order_list'>
 <input type='hidden' name='cancel_return' value='<?php echo admin_url()?>admin.php?page=writing9_order_list'>
 <input type='hidden' name='custom' value='<?php echo $custom?>'>

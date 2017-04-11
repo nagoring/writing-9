@@ -77,6 +77,16 @@ class Any_Model_Paypal{
 		));
 		
 		$mailer->send();
+		
+//		$sendingManager = new Any_Model_Sending_Manager(array(
+//			'orders' => $orders,
+//			'email' => any_writing9_email(),
+//			'home_url' => home_url(),
+//			'receipt_id' => $receipt_id,
+//			'author_user_id' => any_writing9_author_user_id(),
+//		));
+//		$sendingManager->send();
+		
 // 		$result = $ordersDb->updateStatusByOrderIds($orderIdsArray, Any_Definition_EStatus::$CREATING_ARTICLES);
 // 		if(!$result){
 // 			return false;

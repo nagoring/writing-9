@@ -57,6 +57,17 @@
 					
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">投稿者のUserID</label><span class="w9-require">必須</span></p>
 					<input type="number" id="author_user_id" name="author_user_id" required="required" value="<?php echo esc_attr($response->get('author_user_id'))?>">
+
+					<?php if(any_writing9_is_developer()):?>
+					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">PayPalのIPN受信チェックのためのパラメータ</label><span class="w9-require">必須</span></p>
+					<?php echo any_writing9_ipn()?>
+					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">PayPal発注時のパラメータcustomに使うPrivate Key</label><span class="w9-require">必須</span></p>
+					<?php echo any_writing9_private_key()?>
+					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">Notify URL</label><span class="w9-require">必須</span></p>
+					<?php echo any_wiring9_notify_url()?>
+					
+					<?php endif?>
+
 					
 					<div id="publishing-action">
 						<span class="spinner"></span>

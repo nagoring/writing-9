@@ -22,7 +22,7 @@ function func_writing9_edit_order() {
 			$ordersDb = Any_Db_Orders::getInstance();
 			$ordersDb->updateResponse($response, $order_id);
 			$response->set('order_id', $order_id);
-			unset($_SESSION['any']);
+			if(isset($_SESSION['any']))unset($_SESSION['any']);
 		}
 	}
 	
