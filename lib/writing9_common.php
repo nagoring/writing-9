@@ -136,8 +136,11 @@ function any_writing9_merchant_email(){
 function any_writing9_merchant_email_cc(){
 	return 'nagoling@gmail.com';
 }
+function any_writing9_is_developer(){
+	return file_exists(dirname(__FILE__) . '/w9_developer.json');
+}
 function any_writing9_use_sandbox(){
-	return true;
+	return any_writing9_is_developer();
 }
 function any_writing9_paypal_url(){
 	if(any_writing9_use_sandbox()){
