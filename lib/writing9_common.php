@@ -101,7 +101,10 @@ function any_writing9_author_user_id(){
 	if($option === false)return '';
 	return $option['author_user_id'];
 }
-
+function any_writing9_rest_api_url_posts(){
+	$rest_api_url = get_rest_url() . 'writing9/v1/posts/';
+	return $rest_api_url;
+}
 function any_writing9_set_setting_and_get(){
 	$option = get_option('Any_Writing9', array());
 	if(!isset($option['private_key']) || $option['private_key'] === ''){
@@ -144,7 +147,7 @@ function any_writing9_use_sandbox(){
 }
 function any_writing9_paypal_url(){
 	if(any_writing9_use_sandbox()){
-		return 'https://www.sandbox.paypal.com/cgi-bin/webscr';
+		return 'https://www.sandbox.paypal.com/jp/cgi-bin/webscr';
 	}else{
 		return 'https://www.paypal.com/cgi-bin/webscr';
 	}
@@ -156,6 +159,14 @@ function any_writing9_paypal_business(){
 		return 'amano@polarbear.work';
 	}
 }
+function any_writing9_sending_manager_url(){
+	if(any_writing9_is_developer()){
+		return "http://nagoring.com/blog/wp-json/writing9-manager/v1/posts";
+	}else{
+		return "http://writing-9.polarbear.work/wp-json/writing9-manager/v1/posts";
+	}
+}
+
 function any_writing9_validate_ordering(){
 	$error = Any_Core_Error::getInstance();
     if(!isset($_POST['text_type']) || empty($_POST['text_type'])){

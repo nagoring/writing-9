@@ -27,11 +27,13 @@
 <input type='hidden' name='amount' value='<?php echo (int)$total_price?>'>
 <input type='hidden' name='currency_code' value='JPY'>
 <input type='hidden' name='notify_url' value='<?php echo any_wiring9_notify_url()?>'>
-<input type='hidden' name='return' value='<?php echo admin_url()?>admin.php?page=writing9_order_list'>
+<input type='hidden' name='return' value='<?php echo admin_url()?>admin.php?page=writing9_order_list&o=<?php echo $order_ids_text?>&loading=1'>
 <input type='hidden' name='cancel_return' value='<?php echo admin_url()?>admin.php?page=writing9_order_list'>
 <input type='hidden' name='custom' value='<?php echo $custom?>'>
 <input type="image" src="https://www.paypalobjects.com/ja_JP/JP/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - オンラインでより安全・簡単にお支払い">
 </form>
+
+
 
 	</div>
 </div>

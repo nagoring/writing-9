@@ -30,7 +30,6 @@ class Any_Model_Mailer{
 	}
 	function _getBody(){
 		$order_body = $this->_createMailBodyParameters($this->orders);
-		$rest_api_url = get_rest_url() . 'writing9/v1/posts/';
 		
 		$view = Any_Core_View::getInstance();
 		return $view->load('views/mail/m_purchase_orders_body.php', array(
@@ -38,7 +37,7 @@ class Any_Model_Mailer{
 			'from_email' => $this->from_email,
 			'order_body' => $order_body,
 			'author_user_id' => $this->author_user_id,
-			'rest_api_url' => $rest_api_url,
+			'rest_api_url' => any_writing9_rest_api_url_posts(),
 			'api_key' => any_writing9_api_key(),
 			'receipt_id' => $this->receipt_id,
 		));
