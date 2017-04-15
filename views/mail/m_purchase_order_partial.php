@@ -1,3 +1,8 @@
+- order_id
+<?php echo $orderHelper->id()?>
+
+
+
 -ここに記事パターンのタイトル
 <?php echo $orderHelper->title()?>
 
@@ -84,10 +89,5 @@
 
 -フォーマットご要望
 <?php echo $orderHelper->format_setting_note()?>
-
-
-- order_id
-<?php echo $orderHelper->id()?>
-
 
 ==========

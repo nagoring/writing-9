@@ -40,18 +40,15 @@ $orderHelper = Any_Helper_Order::getInstance();
 		    <input id="cb-select-all-1" type="checkbox" />
         </td>
 	    <th scope="col" id='title' class='manage-column column-title column-primary sortable desc'>
-			<a href="https://writing-9-nagoring.c9users.io/wp-admin/edit.php?orderby=title&#038;order=asc">
 				<span>タイトル</span>
 				<span class="sorting-indicator"></span>
-			</a>
 		</th>
 		<th scope="col" id='author' class='manage-column  column-author'>記事数</th>
 		<th scope="col" id='categories' class='manage-column  column-author'>文字数</th>
 		<th scope="col" id='date' class='manage-tags sortable asc' style="width:140px;">
-			<a href="https://writing-9-nagoring.c9users.io/wp-admin/edit.php?orderby=date&#038;order=desc">
-			<span>日時</span><span class="sorting-indicator"></span></a>
+			<span>日時</span><span class="sorting-indicator"></span>
 		</th>
-		<th scope="col" id='tags' class='manage-column sortable asc'><a href="https://writing-9-nagoring.c9users.io/wp-admin/edit.php?orderby=date&#038;order=desc"><span>状態</span><span class="sorting-indicator"></span></a></th>
+		<th scope="col" id='tags' class='manage-column sortable asc'><span>状態</span><span class="sorting-indicator"></span></th>
 		
 		
 	</tr>
