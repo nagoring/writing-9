@@ -72,6 +72,9 @@ $orderHelper = Any_Helper_Order::getInstance();
 		<strong><a class="row-title" href="?page=writing9_edit_order&order_id=<?php echo $orderHelper->id()?>" aria-label="<?php echo $orderHelper->listTitle()?>の詳細"><?php echo $orderHelper->Title()?>(id:<?php echo $orderHelper->id()?>)</a></strong>
 	<div class="row-actions">
 		<span class="edit"><a href="?page=writing9_edit_order&order_id=<?php echo $orderHelper->id()?>" aria-label="<?php echo $orderHelper->listTitle()?>の詳細">詳細</a></span>
+		<?php if($orderHelper->statusText() === '発注する'):?>
+		<span style="color:#ff0000;">右の発注ボタンを押してください</span>
+		<?php endif?>
 	</div>
 		</td>
 		<td class="author column-author"><?php echo $orderHelper->number_articles()?><small>記事</small></td>
