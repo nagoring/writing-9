@@ -33,11 +33,18 @@ class Any_Helper_Order extends Any_Helper_Helper{
     public function submitText(){
         return Any_Definition_EStatus::submitText($this->order->status);
     }
+    public function status(){
+        return $this->order->status;
+    }
     
     public function submitTag($order_id){
         $submit_text = $this->submitText();
         $url = get_admin_url() ."admin.php?page=writing9_order&order_ids[]={$order_id}";
-        $html = "<input name=\"save\" type=\"button\" class=\"button button-primary button-large\" id=\"publish\" value=\"{$submit_text}\" onclick=\"location.href='$url'\">";
+		if($this->status() === Any_Definition_EStatus::$DONE){
+	        $html = $submit_text;
+		}else{
+	        $html = "<input name=\"save\" type=\"button\" class=\"button button-primary button-large\" id=\"publish\" value=\"{$submit_text}\" onclick=\"location.href='$url'\">";
+		}
         return $html;
     }
     public function title(){
