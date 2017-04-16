@@ -40,8 +40,8 @@ class Any_Helper_Order extends Any_Helper_Helper{
     public function submitTag($order_id){
         $submit_text = $this->submitText();
         $url = get_admin_url() ."admin.php?page=writing9_order&order_ids[]={$order_id}";
-		if($this->status() === Any_Definition_EStatus::$DONE){
-	        $html = $submit_text;
+		if($this->status() == Any_Definition_EStatus::$DONE){
+	        $html = "<span class=\"button button-large\" id=\"publish\">$submit_text</span>";
 		}else{
 	        $html = "<input name=\"save\" type=\"button\" class=\"button button-primary button-large\" id=\"publish\" value=\"{$submit_text}\" onclick=\"location.href='$url'\">";
 		}
