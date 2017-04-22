@@ -86,11 +86,11 @@ class Any_Helper_Order extends Any_Helper_Helper{
     public function keyword5(){
         return esc_html($this->order->keyword5);
     }
-    public function ngword1(){
-        return esc_html($this->order->ngword1);
+    public function ng_keyword1(){
+        return esc_html($this->order->ng_keyword1);
     }
-    public function ngword2(){
-        return esc_html($this->order->ngword2);
+    public function ng_keyword2(){
+        return esc_html($this->order->ng_keyword2);
     }
     public function visualCheckText(){
         $array = Any_Definition_Form::getInstance()->get('visual_check');

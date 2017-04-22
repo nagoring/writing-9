@@ -52,11 +52,11 @@
 
 
 -NGワード1
-<?php echo $orderHelper->ngword1()?>
+<?php echo $orderHelper->ng_keyword1()?>
 
 
 -NGワード2
-<?php echo $orderHelper->ngword2()?>
+<?php echo $orderHelper->ng_keyword2()?>
 
 
 -記事数

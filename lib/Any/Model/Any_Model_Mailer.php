@@ -30,6 +30,13 @@ class Any_Model_Mailer{
 	}
 	function _getBody(){
 		$order_body = $this->_createMailBodyParameters($this->orders);
+		$order_ids_text = '';
+		foreach($this->orders as $order){
+			$orderHelper = Any_Helper_Order::getInstance();
+			$orderHelper->init($order);
+			$order_ids_text .= $orderHelper->id() . ',';
+		}
+		$order_ids_text = rtrim($order_ids_text, ',');
 		
 		$view = Any_Core_View::getInstance();
 		return $view->load('views/mail/m_purchase_orders_body.php', array(
@@ -40,6 +47,7 @@ class Any_Model_Mailer{
 			'rest_api_url' => any_writing9_rest_api_url_posts(),
 			'api_key' => any_writing9_api_key(),
 			'receipt_id' => $this->receipt_id,
+			'order_ids_text' => $order_ids_text,
 		));
 	}
 	function _createMailBodyParameters($orders){
