@@ -4,7 +4,7 @@
  * Plugin URI:      https://github.com/nagoring/writing-9
  * Description:     投稿記事の作成を依頼するプラグインです。
  * Author:          Any
- * Author URI:      http://writing-9.polarbear.work/
+ * Author URI:      http://polarbear.work/
  * Text Domain:     writing-9
  * Domain Path:     /languages
  * Version:         0.9.0

@@ -163,7 +163,7 @@ function any_writing9_sending_manager_url(){
 	if(any_writing9_is_developer()){
 		return "http://nagoring.com/blog/wp-json/writing9-manager/v1/posts";
 	}else{
-		return "http://writing-9.polarbear.work/wp-json/writing9-manager/v1/posts";
+		return "http://polarbear.work/wp-json/writing9-manager/v1/posts";
 	}
 }
 
