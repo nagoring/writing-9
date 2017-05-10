@@ -69,23 +69,23 @@ if($order->status != Any_Definition_EStatus::$NOT_PAYMENT){
 					<p>説明文、体験談、雑学・お役立ち、紹介文など、どんな文章にしたいのか記入してください。</p>
 					
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">文末表現</label></p>
-					<?php echo any_select('end_of_sentence', $form->get('end_of_sentence'), $response->get('end_of_sentence'), [
+					<?php echo any_select('end_of_sentence', $form->get('end_of_sentence'), $response->get('end_of_sentence'), array(
 					'aria-required' => true,
 					'id' => 'end_of_sentence',
 					$disabled => $disabled,
-					]);?>
+					));?>
 					
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">テイスト</label></p>	
-					<?php echo any_select('text_taste', $form->get('text_taste'), $response->get('text_taste'), [
+					<?php echo any_select('text_taste', $form->get('text_taste'), $response->get('text_taste'), array(
 					'id' => 'text_taste',
 					$disabled => $disabled,
-					]);?>
+					));?>
 					
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">記事ジャンル</label></p>	
-					<?php echo any_select('genre', $form->get('genre'), $response->get('genre'), [
+					<?php echo any_select('genre', $form->get('genre'), $response->get('genre'), array(
 					'id' => 'genre',
 					$disabled => $disabled,
-					]);?>
+					));?>
 					
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">参考URL</label></p>	
 					<input type="text" id="reference_url" name="reference_url" value="<?php echo esc_attr($response->get('reference_url'))?>" <?php echo $disabled?>></input>
@@ -146,16 +146,16 @@ if($order->status != Any_Definition_EStatus::$NOT_PAYMENT){
 				<div class="inside">
 					
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">目視チェック（@+0.5円）</label></p>
-					<?php echo any_select('visual_check', $form->get('visual_check'), $response->get('visual_check'), [
+					<?php echo any_select('visual_check', $form->get('visual_check'), $response->get('visual_check'), array(
 						'id' => 'visual_check',
 						$disabled => $disabled,
-					]);?>
+					));?>
 					
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">プロライターの起用（@+5円）</label></p>
-					<?php echo any_select('use_pro_writer', $form->get('use_pro_writer'), $response->get('use_pro_writer'), [
+					<?php echo any_select('use_pro_writer', $form->get('use_pro_writer'), $response->get('use_pro_writer'), array(
 						'id' => 'use_pro_writer',
 						$disabled => $disabled,
-					]);?>
+					));?>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">特記事項</label></p>
 					<textarea class="w9-textarea" id="note" name="note"<?php echo $disabled?>><?php echo $response->get('note')?></textarea>
 				</div>
@@ -166,16 +166,16 @@ if($order->status != Any_Definition_EStatus::$NOT_PAYMENT){
 				<h2 class="hndle ui-sortable-handle">投稿時のフォーマット</h2>
 				<div class="inside">
 				<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">タイトル作成（@+0.5円）</label></p>
-				<?php echo any_select('title_creation', $form->get('title_creation'), $response->get('title_creation'), [
+				<?php echo any_select('title_creation', $form->get('title_creation'), $response->get('title_creation'), array(
 					'id' => 'title_creation',
 					$disabled => $disabled,
-				]);?>
+				));?>
 				
 				<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">フォーマット設定（@+0.5円）</label></p>
-				<?php echo any_select('format_setting', $form->get('format_setting'), $response->get('format_setting'), [
+				<?php echo any_select('format_setting', $form->get('format_setting'), $response->get('format_setting'), array(
 					'id' => 'format_setting',
 					$disabled => $disabled,
-				]);?>
+				));?>
 				<p>小見出しの設定やプルダウン形式のアンケート回答が欲しい場合は入力してください。</p>
 				
 				<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="menu_order">ご要望</label></p>
