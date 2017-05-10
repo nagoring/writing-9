@@ -33,7 +33,7 @@ function writing9_add_order() {
 				wp_redirect(get_admin_url() . 'admin.php?page=writing9_order_list');
 				exit();
 		    }else{
-		    	$_SESSION['any'] = ['response' => serialize($response)];
+		    	$_SESSION['any'] = array('response' => serialize($response));
 				$error = Any_Core_Error::getInstance();
 				wp_redirect(get_admin_url() . 'admin.php?page=writing9_manager');
 				exit();
